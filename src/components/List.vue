@@ -6,8 +6,8 @@
     <div class="content-list" v-for="item in lists">
       <div class="content-left"><img src="../style/images/avatar.jpg" width="50px" height="50px" class="img-avatar"/></div>
       <div class="content-body">
-        <span class="uk-text-muted uk-text-nowrap">11111122222222222222222222222222222222222222222222</span><br/>
-        <span class="uk-text-muted">by <a class="uk-text-primary">daixin</a>
+        <span class="uk-text-muted uk-text-nowrap">{{ item.title }}</span><br/>
+        <span class="uk-text-muted">by <a class="uk-text-primary">{{ item.username }}</a>
         发表于：2111111</span>
       </div>
       <div class="content-right">点赞</div>
