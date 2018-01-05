@@ -6,8 +6,8 @@ branches:
   - master
 notifications:
   email: false
-  
 sudo: false                 
 before_script: npm install
- 
+script:
+- npm run build
 # script: npm run test
