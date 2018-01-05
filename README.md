@@ -1,4 +1,4 @@
-# BlogHub
+# BlogHub  [![Build Status](https://travis-ci.org/ishidai/BlogHub.svg?branch=master)](https://travis-ci.org/ishidai/BlogHub)
 
 博客聚合导航站
 
