@@ -7,7 +7,10 @@ branches:
 notifications:
   email: false
 sudo: false                 
-before_script: npm install
+install:
+  - npm install
+before_script:
+# 无其他依赖项所以执行npm run build 构建就行了
 script:
-- npm run build
+  - npm run build
 # script: npm run test
