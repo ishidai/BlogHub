@@ -2,7 +2,7 @@
   <div class="uk-section uk-section-secondary  uk-light">
     <div class="uk-container">
 
-      <h3>Toit.me</h3>
+      <h3>BlogHub</h3>
 
       <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
         <div>
