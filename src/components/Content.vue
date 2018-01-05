@@ -30,23 +30,21 @@
 </template>
 
 <script>
-    import HeaderBar from './HeaderBar.vue'
-    import FooterBar from './FooterBar.vue'
-    export default {
-        data() {
-            return {
-            }
-        },
-        computed: {},
-        components: {
-          HeaderBar,
-          FooterBar
-        },
-        methods: {
-        },
-    }
+import HeaderBar from "./HeaderBar.vue";
+import FooterBar from "./FooterBar.vue";
+export default {
+  data() {
+    return {};
+  },
+  computed: {},
+  components: {
+    HeaderBar,
+    FooterBar
+  },
+  methods: {}
+};
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 </style>

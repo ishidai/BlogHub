@@ -30,46 +30,48 @@
 </template>
 
 <script>
-  import consts from '../constant/consts'
-    export default {
-        data() {
-            return {
-              emailName: '',
-              pwd: '',
-              token: ''
-            }
-        },
-        computed: {},
-        components: {
-        },
-        methods: {
-          login() {
-            const _this = this
-            this.axios.get(consts.login, {
-              headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-              timeout: 6000,
-              auth: {
-                username: `${_this.emailName}`,
-                password: `${_this.pwd}`
-              }
-            }).then((response) => {
-              _this.token = response.data.token
-              window.localStorage.setItem('token', _this.token)
-              this.$store.dispatch('commitToken', _this.token)
-              if (_this.token) {
-                _this.$router.push('/')
-              }
-            }).catch(function (error) {
-              console.log(error)
-            })
+import consts from "../constant/consts";
+export default {
+  data() {
+    return {
+      emailName: "",
+      pwd: "",
+      token: ""
+    };
+  },
+  computed: {},
+  components: {},
+  methods: {
+    login() {
+      const _this = this;
+      this.axios
+        .get(consts.login, {
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          timeout: 6000,
+          auth: {
+            username: `${_this.emailName}`,
+            password: `${_this.pwd}`
           }
-        },
+        })
+        .then(response => {
+          _this.token = response.data.token;
+          window.localStorage.setItem("token", _this.token);
+          this.$store.dispatch("commitToken", _this.token);
+          if (_this.token) {
+            _this.$router.push("/");
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
+  }
+};
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 /*.uk-background-cover {*/
-  /*background-image: url("../style/images/login.jpg");*/
+/*background-image: url("../style/images/login.jpg");*/
 /*}*/
 .uk-padding-large {
   padding: inherit;

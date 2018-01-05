@@ -20,19 +20,16 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-            }
-        },
-        computed: {},
-        components: {
-        },
-        methods: {
-        },
-    }
+export default {
+  data() {
+    return {};
+  },
+  computed: {},
+  components: {},
+  methods: {}
+};
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 </style>
