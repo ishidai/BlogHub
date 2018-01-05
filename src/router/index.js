@@ -41,6 +41,7 @@ if (window.localStorage.getItem('token')) {
 }
 
 const router = new Router({
+  mode: 'hash',  
   routes
 })
 

@@ -1,32 +1,32 @@
 <template>
-<div>
-      <div class="uk-grid-collapse" uk-grid>
-        <div class="uk-background-cover" uk-height-viewport></div>
-        <div class="uk-padding-large">
-          <form>
-            <div class="uk-margin">
-              <div class="uk-inline">
-                <span class="uk-form-icon" uk-icon="icon: user"></span>
-                <input class="uk-input uk-width-3-1" v-model="emailName" type="text" placeholder="请输入邮箱名">
-              </div>
+  <div>
+    <div class="uk-grid-collapse" uk-grid>
+      <div class="uk-background-cover" uk-height-viewport></div>
+      <div class="uk-padding-large">
+        <form>
+          <div class="uk-margin">
+            <div class="uk-inline">
+              <span class="uk-form-icon" uk-icon="icon: user"></span>
+              <input class="uk-input uk-width-3-1" v-model="emailName" type="text" placeholder="请输入邮箱名">
             </div>
+          </div>
 
-            <div class="uk-margin">
-              <div class="uk-inline">
-                <span class="uk-form-icon" uk-icon="icon: lock"></span>
-                <input class="uk-input uk-width-3-1" type="password" v-model="pwd" placeholder="请输入密码">
-              </div>
+          <div class="uk-margin">
+            <div class="uk-inline">
+              <span class="uk-form-icon" uk-icon="icon: lock"></span>
+              <input class="uk-input uk-width-3-1" type="password" v-model="pwd" placeholder="请输入密码">
             </div>
+          </div>
 
-            <div class="uk-margin">
-              <div class="uk-inline">
-                <button class="uk-button uk-button-primary" style="width: 226px" @click="login">登录</button>
-              </div>
+          <div class="uk-margin">
+            <div class="uk-inline">
+              <button class="uk-button uk-button-primary" style="width: 226px" @click="login">登录</button>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
