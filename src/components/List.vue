@@ -22,52 +22,51 @@
 </template>
 
 <script>
-  import Vue from 'vue'
-  import { Row } from 'element-ui'
-  import { Tag } from 'element-ui'
-  Vue.component(Row.name, Row)
-  Vue.component(Tag.name, Tag)
-  import { mapGetters } from 'vuex'
-    export default {
-        props:{
-          isLoading: Boolean,
-          lists: Array
-        },
-        data() {
-            return {
-            }
-        },
-    }
+import Vue from "vue";
+import { Row } from "element-ui";
+import { Tag } from "element-ui";
+Vue.component(Row.name, Row);
+Vue.component(Tag.name, Tag);
+import { mapGetters } from "vuex";
+export default {
+  props: {
+    isLoading: Boolean,
+    lists: Array
+  },
+  data() {
+    return {};
+  }
+};
 </script>
 
-<style scoped>
-  .content-list {
-    min-width: 600px;
-    width: 100%;
-    min-height: 68px;
-    border-bottom: 1px solid #F0F0F0;
-  }
+<style scoped lang="scss">
+.content-list {
+  min-width: 600px;
+  width: 100%;
+  min-height: 68px;
+  border-bottom: 1px solid #f0f0f0;
+}
 
-  .content-left {
-    width: 10%;
-    min-height: 68px;
-    float: left;
-    text-align: center;
-  }
+.content-left {
+  width: 10%;
+  min-height: 68px;
+  float: left;
+  text-align: center;
+}
 
-  .content-body {
-    min-height: 68px;
-    width: auto;
-    float: left;
-  }
+.content-body {
+  min-height: 68px;
+  width: auto;
+  float: left;
+}
 
-  .content-right {
-    float: right;
-    min-height: 68px;
-  }
+.content-right {
+  float: right;
+  min-height: 68px;
+}
 
-  .img-avatar {
-    border-radius: 120px;
-    height: 50px;
-  }
+.img-avatar {
+  border-radius: 120px;
+  height: 50px;
+}
 </style>

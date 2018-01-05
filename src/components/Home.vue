@@ -41,104 +41,104 @@
 </template>
 
 <script>
-import consts from '../constant/consts'
-import Banner from './Banner.vue'
-import FooterBar from './FooterBar.vue'
-import HeaderBar from './HeaderBar.vue'
-import List from './List.vue'
-import { mapGetters } from 'vuex'
+import consts from "../constant/consts";
+import Banner from "./Banner.vue";
+import FooterBar from "./FooterBar.vue";
+import HeaderBar from "./HeaderBar.vue";
+import List from "./List.vue";
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'Home',
-  data () {
+  name: "Home",
+  data() {
     return {
-      posts:[],
+      posts: [],
       isShow: true,
       isLogin: false
-    }
+    };
   },
   computed: mapGetters({
-    articles: 'homePosts'
+    articles: "homePosts"
   }),
-  created () {
-    this.getPage()
+  created() {
+    this.getPage();
   },
   components: {
     Banner,
     List,
     HeaderBar,
-    FooterBar,
+    FooterBar
   },
   methods: {
-      getPage () {
-          setTimeout(() => {
-            const _this = this
-            this.axios.get(consts.home)
-              .then(response => {
-                this.posts = response.data.posts
-                if (this.posts) {
-                  _this.isShow = false
-                }
-                this.$store.dispatch('getAllPosts', this.posts)
-              }).catch((error) => {
-                _this.getPage()
-                if (error.response) {
-                  console.log(error.response)
-                } else if (error.request) {
-//                  console.log(error.request)
-                  console.log('error.request')
-                  if(error.request.readyState == 4 && error.request.status == 0){
-                    //我在这里重新请求
-//                    _this.getPage()
-                  }
-                } else {
-                  console.log('Error', error.message)
-                }
-                console.log(error.config)
-            })
-          }, 0)
-      },
+    getPage() {
+      setTimeout(() => {
+        const _this = this;
+        this.axios
+          .get(consts.home)
+          .then(response => {
+            this.posts = response.data.posts;
+            if (this.posts) {
+              _this.isShow = false;
+            }
+            this.$store.dispatch("getAllPosts", this.posts);
+          })
+          .catch(error => {
+            _this.getPage();
+            if (error.response) {
+              console.log(error.response);
+            } else if (error.request) {
+              //                  console.log(error.request)
+              console.log("error.request");
+              if (error.request.readyState == 4 && error.request.status == 0) {
+                //我在这里重新请求
+                //                    _this.getPage()
+              }
+            } else {
+              console.log("Error", error.message);
+            }
+            console.log(error.config);
+          });
+      }, 0);
+    },
     publish() {
-          this.$router.push('post')
+      this.$router.push("post");
     }
   },
   created() {
-    this.getPage()
+    this.getPage();
     if (window.localStorage.getItem("token")) {
-      this.isLogin = true
+      this.isLogin = true;
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  .uk-text-center {
-    margin: 0 190px;
-  }
+<style scoped lang="scss">
+.uk-text-center {
+  margin: 0 190px;
+}
 
-  .topic-list>ul {
-    padding: 0;
-    margin: 0;
-  }
+.topic-list > ul {
+  padding: 0;
+  margin: 0;
+}
 
-  .el-col {
-    border-radius: 4px;
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 360px;
-    padding: 6px;
-  }
-
-
+.el-col {
+  border-radius: 4px;
+}
+.bg-purple-dark {
+  background: #99a9bf;
+}
+.bg-purple {
+  background: #d3dce6;
+}
+.bg-purple-light {
+  background: #e5e9f2;
+}
+.grid-content {
+  border-radius: 4px;
+  min-height: 360px;
+  padding: 6px;
+}
 </style>

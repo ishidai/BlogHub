@@ -1,0 +1,54 @@
+@import './variable';
+
+[v-cloak] {
+  display: none;
+}
+
+html,
+body {
+  height: 100%;
+  color: #4c4c4c;
+  font-size: 100px;
+  font-family: $font-family;
+  background: $background;
+  touch-action: manipulation;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: $font-family;
+}
+
+input {
+  border-radius: 0;
+  background: transparent;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+a {
+  color:#4c4c4c;
+  text-decoration:none;
+}
+
+ol, ul, li {
+  list-style:none;
+}
+
+button[disabled] {
+  background: #ccc;
+}
+
+img {
+  object-fit: cover;
+}
+

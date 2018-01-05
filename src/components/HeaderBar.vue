@@ -43,58 +43,56 @@
 </template>
 
 <script>
-  import constans from '../constant/consts'
-    export default {
-        props: {
-            isLogin: Boolean,
-            isPublish: Boolean,
-        },
-        data() {
-            return {
-                user: {}
-            }
-        },
-        computed: {
-
-        },
-        components: {
-        },
-        methods: {
-          login() {
-              this.$router.push('login')
-          },
-          publish() {
-            this.$router.push('post')
-          },
-          commitPost() {
-            this.$emit('commitActicle')
-          },
-          logout() {
-            this.axios.get(constans.logout).then((res) => {
-                window.localStorage.clear()
-                window.location.reload()
-            })
-          }
-        },
-        created() {
-        },
-        mounted() {
-          const _this = this
-          if (this.isLogin) {
-            const token = window.localStorage.getItem("token")
-            this.axios.get(constans.user, {
-              timeout: 6000,
-              auth: {
-                username: token
-              }
-            }).then((res) => {
-              _this.user = res.data
-            })
-          }
-        }
+import constans from "../constant/consts";
+export default {
+  props: {
+    isLogin: Boolean,
+    isPublish: Boolean
+  },
+  data() {
+    return {
+      user: {}
+    };
+  },
+  computed: {},
+  components: {},
+  methods: {
+    login() {
+      this.$router.push("login");
+    },
+    publish() {
+      this.$router.push("post");
+    },
+    commitPost() {
+      this.$emit("commitActicle");
+    },
+    logout() {
+      this.axios.get(constans.logout).then(res => {
+        window.localStorage.clear();
+        window.location.reload();
+      });
     }
+  },
+  created() {},
+  mounted() {
+    const _this = this;
+    if (this.isLogin) {
+      const token = window.localStorage.getItem("token");
+      this.axios
+        .get(constans.user, {
+          timeout: 6000,
+          auth: {
+            username: token
+          }
+        })
+        .then(res => {
+          _this.user = res.data;
+        });
+    }
+  }
+};
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 </style>

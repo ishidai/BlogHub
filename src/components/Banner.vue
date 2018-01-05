@@ -46,22 +46,20 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                defaultValue: '',
-            }
-        },
-        computed: {},
-        components: {
-        },
-        methods: {
-            confirm() {
-            }
-        },
-    }
+export default {
+  data() {
+    return {
+      defaultValue: ""
+    };
+  },
+  computed: {},
+  components: {},
+  methods: {
+    confirm() {}
+  }
+};
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 </style>
