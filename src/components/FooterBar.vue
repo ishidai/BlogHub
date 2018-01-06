@@ -2,17 +2,17 @@
   <div class="uk-section uk-section-secondary  uk-light">
     <div class="uk-container">
 
-      <h3>BlogHub</h3>
+      <h3>BlogHub-国内聚合导航站</h3>
 
       <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
         <div>
-          <p>国内博客聚合导航站</p>
+          <p><a style="" href="https://toit.me">联系我们</a></p>
         </div>
         <div>
-          <p>国内博客聚合导航站</p>
+          <p><a style="" href="https://toit.me">关于我们</a></p>
         </div>
         <div>
-          <p>国内博客聚合导航站</p>
+          <p>&copy &nbsp2018 &nbspBlogHub版权所有</p>
         </div>
       </div>
     </div>
@@ -31,5 +31,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+div.uk-section{background-color: rgba(0,101,206,0.9);border:3px solid;border-radius:30px;margin:0px 0px  0px 0px};
+p{width:auto;text-align:center;}
+h3{text-align:center;};
+a{text-decoration:none} 
 </style>
