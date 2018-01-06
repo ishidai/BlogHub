@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-div.uk-section{background-color: rgba(0,101,206,0.9);border:3px solid;border-radius:30px;margin:0px 0px  0px 0px};
+div.uk-section{background-color: rgba(0,101,206,0.9);margin:0px 0px  0px 0px};
 p{width:auto;text-align:center;}
 h3{text-align:center;};
 a{text-decoration:none} 
