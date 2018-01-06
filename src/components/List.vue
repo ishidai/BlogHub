@@ -16,7 +16,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import Vue from "vue";
 import { Row } from "element-ui";

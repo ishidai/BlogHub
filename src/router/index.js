@@ -5,7 +5,7 @@ import Home from '@/components/Home'
 import Content from '@/components/Content'
 import Login from '@/components/Login'
 import QEditor from '@/components/QEditor'
-
+import Blog from '@/components/Blog'
 // const Content = r => import('../components/Content').then(r)
 Vue.use(Router)
 
@@ -26,6 +26,14 @@ const routes = [
       component: Login
     },
     {
+      path: '/blog',
+      name: 'blog',
+      meta: {
+        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+      },
+      component: Blog
+    },
+    {
       path: '/post',
       name: 'post',
       meta: {
@@ -41,7 +49,7 @@ if (window.localStorage.getItem('token')) {
 }
 
 const router = new Router({
-  mode: 'hash',  
+  mode: 'hash',
   routes
 })
 

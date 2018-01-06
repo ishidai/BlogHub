@@ -28,7 +28,6 @@
     <footer-bar></footer-bar>
     </div>
 </template>
-
 <script>
 import HeaderBar from "./HeaderBar.vue";
 import FooterBar from "./FooterBar.vue";

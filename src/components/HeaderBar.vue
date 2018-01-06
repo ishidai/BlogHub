@@ -32,6 +32,7 @@
           <a href="#" style="font-weight: bold">{{ user.username }}</a>
           <div class="uk-navbar-dropdown">
             <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li class="uk-active"><a href="javascript:" @click="blogCommit()"  >博客提交</a></li>
               <li class="uk-active"><a href="javascript:" @click="publish()"  >投稿</a></li>
               <li><a href="javascript:" @click="logout()"  >登出</a></li>
             </ul>
@@ -59,6 +60,9 @@ export default {
   methods: {
     login() {
       this.$router.push("login");
+    },
+    blogCommit() {
+      this.$router.push("blog");
     },
     publish() {
       this.$router.push("post");

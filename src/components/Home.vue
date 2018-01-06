@@ -14,31 +14,34 @@
       <el-tabs v-model="activeName" @tab-click="handleClick" class="header-tabs">
         <el-tab-pane label="基佬" name="first">
           <span slot="label"><i class="el-icon-date"></i>基佬1</span>
-          <el-col :xs="24" :sm="8" :md="6" :lg="4" :xl="4" v-for="(itemn, index) in 21" :key="index">
+          <el-col :xs="24" :sm="8" :md="6" :lg="4" :xl="4" v-for="(item, index) in posts" :key="index">
             <div class="grid-content bg-purple">
               <div class="content-bg">
                 <img src="../assets/logo.png" width="100%" height="100%">
               </div>
               <div class="content-text">
-                adadsa
+                博客名称：{{ item.name }}
+              </div>
+              <div class="content-text">
+                博客简介：{{ item.name }}
               </div>
             </div>
           </el-col>
         </el-tab-pane>
         <el-tab-pane label="基佬" name="second">
-          <span slot="label"><i class="el-icon-date"></i>基佬1</span>          
+          <span slot="label"><i class="el-icon-date"></i>基佬1</span>
           <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
             <div class="grid-content bg-purple">基佬1</div>
           </el-col>
         </el-tab-pane>
         <el-tab-pane label="基佬" name="third">
-          <span slot="label"><i class="el-icon-date"></i>基佬2</span>          
+          <span slot="label"><i class="el-icon-date"></i>基佬2</span>
           <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
             <div class="grid-content bg-purple">基佬2</div>
           </el-col>
         </el-tab-pane>
         <el-tab-pane label="基佬" name="fourth">
-          <span slot="label"><i class="el-icon-date"></i>基佬3</span>          
+          <span slot="label"><i class="el-icon-date"></i>基佬3</span>
           <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
             <div class="grid-content bg-purple">基佬3</div>
           </el-col>
@@ -102,9 +105,9 @@ export default {
       setTimeout(() => {
         const _this = this;
         this.axios
-          .get(consts.home)
+          .get(consts.blogs)
           .then(response => {
-            this.posts = response.data.posts;
+            this.posts = response.data.blogs;
             if (this.posts) {
               _this.isShow = false;
             }
