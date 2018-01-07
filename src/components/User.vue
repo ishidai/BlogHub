@@ -19,12 +19,12 @@ import consts from "../constant/consts";
 import Banner from "./Banner.vue";
 import FooterBar from "./FooterBar.vue";
 import HeaderBar from "./HeaderBar.vue";
-// import { mapGetters } from "vuex";
+ import { mapGetters } from "vuex";
 
 export default {
   name: "User",
   data() {
-    
+
   },
   computed: mapGetters({
     articles: "homePosts"
@@ -59,7 +59,7 @@ export default {
               console.log("error.request");
               if (error.request.readyState == 4 && error.request.status == 0) {
                 //我在这里重新请求
-                //                    _this.getPage()
+                // _this.getPage()
               }
             } else {
               console.log("Error", error.message);
@@ -83,7 +83,6 @@ export default {
   }
 };
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 #user {

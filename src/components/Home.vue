@@ -23,7 +23,7 @@
                 博客名称：{{ item.name }}
               </div>
               <div class="content-text">
-                博客简介：{{ item.name }}
+                博客简介：{{ item.description }}
               </div>
             </div>
           </el-col>

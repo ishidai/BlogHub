@@ -2,7 +2,6 @@
 <div>
 <header-bar></header-bar>
 <div style="width: 50%;margin: 20px auto;">
-
   <el-upload
     class="avatar-uploader"
     action="https://jsonplaceholder.typicode.com/posts/"
