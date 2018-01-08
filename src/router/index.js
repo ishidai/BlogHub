@@ -6,8 +6,7 @@ import Content from '@/components/Content'
 import Login from '@/components/Login'
 import QEditor from '@/components/QEditor'
 import Blog from '@/components/Blog'
-import User from '@/components/User'
-// const Content = r => import('../components/Content').then(r)
+
 Vue.use(Router)
 
 const routes = [
