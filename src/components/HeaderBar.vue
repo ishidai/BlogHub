@@ -82,16 +82,23 @@ export default {
     const _this = this;
     if (this.isLogin) {
       const token = window.localStorage.getItem("token");
-      this.axios
-        .get(constans.user, {
-          timeout: 6000,
-          auth: {
-            username: token
-          }
+      const isGithub = window.localStorage.getItem("isGithub");
+      if (isGithub) {
+        this.axios.get(`https://api.github.com/user?access_token=${token}&scope=&token_type=bearer`).then(res => {
+          _this.user = res.data;
+          _this.user['username']= res.data.name;
+          _this.$store.dispatch("commitToken", token);
         })
-        .then(res => {
+      } else {
+        this.axios.get(constans.user, {
+            timeout: 6000,
+            auth: {
+              username: token
+            }
+          }).then(res => {
           _this.user = res.data;
         });
+      }
     }
   }
 };

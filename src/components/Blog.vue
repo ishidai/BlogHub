@@ -1,6 +1,7 @@
 <template>
 <div>
-<header-bar></header-bar>
+<header-bar
+  :isLogin="true"></header-bar>
 <div style="width: 50%;margin: 20px auto;">
   <el-upload
     class="avatar-uploader"
@@ -80,8 +81,7 @@
           },
           onSubmit() {
             const _this = this;
-            this.axios
-              .post(consts.blogs, {
+            this.axios.post(consts.blogs, {
                 name: this.blogName,
                 description: this.blogDesc,
                 blog_url: this.blogUrl

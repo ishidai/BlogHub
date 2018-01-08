@@ -35,14 +35,6 @@ const routes = [
       component: Blog
     },
     {
-      path: '/user',
-      name: 'user',
-      meta: {
-        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
-      },
-      component: User
-    },
-    {
       path: '/post',
       name: 'post',
       meta: {
@@ -58,7 +50,7 @@ if (window.localStorage.getItem('token')) {
 }
 
 const router = new Router({
-  mode: 'hash',
+  mode: 'history',
   routes
 })
 
