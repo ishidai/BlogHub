@@ -31,8 +31,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-div.uk-section{background-color: rgba(0,101,206,0.9); position:absolute;bottom:0px;width:100%;}
-p{width:auto;text-align:center;}
-h3{text-align:center;};
-a{text-decoration:none} 
+// div.uk-section{background-color: rgba(0,101,206,0.9); position:absolute;bottom:0px;width:100%;}
+// p{width:auto;text-align:center;}
+// h3{text-align:center;};
+// a{text-decoration:none} 
 </style>

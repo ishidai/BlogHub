@@ -10,7 +10,7 @@
       <banner></banner>
     </div>
     <!-- boby start -->
-    <el-row :gutter="10">
+    <el-row :gutter="16">
       <el-tabs v-model="activeName" @tab-click="handleClick" class="header-tabs">
         <el-tab-pane label="基佬" name="first">
           <span slot="label"><i class="el-icon-date"></i>基佬1</span>
@@ -152,23 +152,11 @@ export default {
 #home {
   overflow-x: hidden;
 }
-.uk-text-center {
-  margin: 0 190px;
-}
-
-.topic-list > ul {
-  padding: 0;
-  margin: 0;
-}
-
-.el-col {
-  border-radius: 4px;
-}
 .header-tabs {
   box-sizing: border-box;
   padding: 0 2.5%;
   .bg-purple {
-    background: #d3dce6;
+    background: #e2e2e2;
     .content-bg {
       width: 100%;
       height: 80px;
@@ -178,16 +166,20 @@ export default {
       }
     }
     .content-text {
-      margin-top: 10px;
-      text-align: center;
+      margin-top: 6px;
+      text-align: left;
+      font-size: 12px;
     }
   }
   .grid-content {
     margin-bottom: 5%;
-    border-radius: 4px;
+    border-radius: 10px;
     min-height: 120px;
     padding: 6px;
+    transition: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }
-
 </style>
