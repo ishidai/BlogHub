@@ -23,7 +23,7 @@
               <button class="uk-button uk-button-primary" style="width: 226px" @click="login">登录</button>
             </div>
             <div class="uk-inline">
-              <a href="http://localhost:5000/api/v1.0/login/github">
+              <a href="http://67.218.140.125:5000/api/v1.0/login/github">
                 <el-button type="success" class="uk-button uk-button-primary">Github登录</el-button>
               </a>
             </div>
