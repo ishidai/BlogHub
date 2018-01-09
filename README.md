@@ -12,11 +12,17 @@
 
 项目发起人： @[ishidai](https://github.com/ishidai)
 
+UI设计：@[Tiffany.Hsu](https://weibo.com/u/5632998333)
+
 项目参与：@[lmintlcx](https://github.com/lmintlcx) @[dokimaster](https://github.com/dokimaster) @[wpnl](https://github.com/wpnl)
 
 [![bitHound Overall Score](https://www.bithound.io/github/ishidai/BlogHub/badges/score.svg)](https://www.bithound.io/github/ishidai/BlogHub) [![bitHound Dependencies](https://www.bithound.io/github/ishidai/BlogHub/badges/dependencies.svg)](https://www.bithound.io/github/ishidai/BlogHub/master/dependencies/npm) [![bitHound Code](https://www.bithound.io/github/ishidai/BlogHub/badges/code.svg)](https://www.bithound.io/github/ishidai/BlogHub)
 
-**项目进度：** 18/01/06  支持会员登录，投稿，博客提交
+**项目进度：** 
+
+**18/01/06  支持会员登录，投稿，博客提交**
+
+**18/01/08  支持github单点登录**
 
 ## Build Setup
 

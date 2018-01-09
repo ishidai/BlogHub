@@ -22,6 +22,11 @@
             <div class="uk-inline">
               <button class="uk-button uk-button-primary" style="width: 226px" @click="login">登录</button>
             </div>
+            <div class="uk-inline">
+              <a href="http://localhost:5000/api/v1.0/login/github">
+                <el-button type="success" class="uk-button uk-button-primary">Github登录</el-button>
+              </a>
+            </div>
           </div>
         </form>
       </div>
@@ -64,6 +69,15 @@ export default {
         .catch(function(error) {
           console.log(error);
         });
+    },
+    loginGithub() {
+      this.axios
+        .get('/api/v1.0/login/github')
+        .then(response => {
+          console.log('daixin', response.data)
+        }).catch((err) => {
+          console.log(err)
+      })
     }
   }
 };

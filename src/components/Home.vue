@@ -91,9 +91,6 @@ export default {
   computed: mapGetters({
     articles: "homePosts"
   }),
-  created() {
-    this.getPage();
-  },
   components: {
     Banner,
     List,
@@ -104,9 +101,7 @@ export default {
     getPage() {
       setTimeout(() => {
         const _this = this;
-        this.axios
-          .get(consts.blogs)
-          .then(response => {
+        this.axios.get(consts.blogs).then(response => {
             this.posts = response.data.blogs;
             if (this.posts) {
               _this.isShow = false;
@@ -139,7 +134,15 @@ export default {
     }
   },
   created() {
+    const userCode = this.$utils.getUrlKey("code")
+    if (userCode) {
+      window.location.href='/';
+      window.localStorage.setItem("isGithub", true)
+      window.localStorage.setItem("token", userCode)
+    }
+
     this.getPage();
+
     if (window.localStorage.getItem("token")) {
       this.isLogin = true;
     }

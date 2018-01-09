@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import utils from './utils/utils'
 import router from './router/index'
 import UIkit from 'uikit'
 import Icons from '../node_modules/uikit/dist/js/uikit-icons'
@@ -20,6 +21,7 @@ import '@/assets/scss/index.scss'
 // 将axios挂载到prototype上，在组件中可以直接使用this.axios访问
 Vue.prototype.axios = axios
 Vue.config.productionTip = false
+Vue.prototype.$utils = utils
 // loads the Icon plugin
 UIkit.use(Icons)
 Vue.use(VueQuillEditor, /* { default global options } */)
