@@ -17,7 +17,7 @@
           <el-col :xs="24" :sm="8" :md="6" :lg="4" :xl="4" v-for="(item, index) in posts" :key="index">
             <div class="grid-content bg-purple">
               <div class="content-bg">
-                <img src="../assets/logo.png" width="100%" height="100%">
+                <img src="../assets/images/11.jpg" width="100%" height="100%">
               </div>
               <div class="content-text">
                 博客名称：{{ item.name }}
