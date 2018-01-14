@@ -24,6 +24,8 @@ UI设计：@[Tiffany.Hsu](https://weibo.com/u/5632998333)
 
 **18/01/08  支持github单点登录**
 
+**18/01/13  添加注册会员和邮件确认功能**
+
 ## Build Setup
 
 ``` bash
