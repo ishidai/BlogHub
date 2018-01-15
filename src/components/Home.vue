@@ -11,7 +11,7 @@
     </div>
     <!-- boby start -->
     <el-row :gutter="16">
-      <el-tabs v-model="activeName" @tab-click="handleClick" class="header-tabs">
+      <el-tabs v-model="activeName" @tab-click="handleClick" class="header-tabs" type="card">
         <el-tab-pane label="基佬" name="first">
           <span slot="label"><i class="el-icon-date"></i>基佬1</span>
           <el-col :xs="24" :sm="8" :md="6" :lg="4" :xl="4" v-for="(item, index) in posts" :key="index">
@@ -61,19 +61,47 @@
         </div>
       </el-col> -->
     </el-row>
+    
+    <el-row :gutter="16" class="container">
+      <el-container class="el-container">
+        <el-col :xs="24" :sm="20" :md="18" :lg="16">
+          <el-main class="el-main">
+            <div class="main-container" v-for="(item, index) in 10" :key="index">
+              <div class="main-content">
+                <div class="main-portrait">
+                  <img src="../assets/images/11.jpg">
+                </div>
+                <div class="main-text">
+                  <h2>RubyConf RubyElixirConf Taiwan 2018 征求讲师与赞助</h2>
+                  <p>
+                    <span class="underline">yudoawaru</span>
+                    <span> • 最后由 </span>
+                    <span class="underline">我抱着结衣</span>
+                    <span>回复于 {{index}} 天前</span>
+                  </p>
+                </div>
+              </div>
+              <div class="main-witch-number">
+                <span>{{index}}</span>
+              </div>
+            </div>
+          </el-main>
+        </el-col>        
+        <el-col :xs="0" :sm="4" :md="6">
+          <el-aside width="300px" class="el-aside">
+            <div>
+              <h2>hot title</h2>
+              <ul>
+                <li v-for="(item, index) in 10" :key="index">
+                  <span>溢出不隐藏溢出不隐藏溢出不隐藏</span>
+                </li>
+              </ul>
+            </div>
+          </el-aside>
+        </el-col>                
+      </el-container>
+    </el-row>
 
-    <!--<div uk-grid>-->
-      <!--<div class="uk-width-3-4">-->
-        <!--<div class="uk-card uk-card-default uk-card-body">-->
-          <!---->
-        <!--</div>-->
-      <!--</div>-->
-
-      <!--<div class="uk-width-1-4">-->
-          <!--<button class="uk-button uk-button-primary uk-button-large" @click="publish">投 稿</button>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--boby end-->
     <footer-bar></footer-bar>
   </div>
 </template>
@@ -162,10 +190,109 @@ export default {
 <style scoped lang="scss">
 #home {
   overflow-x: hidden;
+  background: #f2f2f2;  
+  .container {
+    margin-top: 1%;
+  }
+  .el-container {
+    box-sizing: border-box;
+    padding: 0 3%;
+    background: #f2f2f2;
+    .el-main {
+      padding: 0;
+    }
+    .el-col-xs-24 {
+      padding: 0;
+    }
+    .main-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 60px;
+      padding: 0.8% 1.8%;
+      background: #fff;
+      border-bottom: 1px solid #F0F0F0;
+      .main-content {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        .main-portrait {
+          width: 48px;
+          height: 48px;
+          margin-right: 1%;
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;            
+          }
+        }
+        .main-text {
+          h2 {
+            margin-bottom: 2px;
+            font-size: 16px;
+            font-weight: 600;
+          }
+          p {
+            font-size: 14px;
+            color: #8f8d8b;
+            .underline {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+      .main-witch-number {
+        flex: 0 0 35px;
+        width: 35px;
+        text-align: center;
+        background: #CFD3E6;
+        border-radius: 30%;
+        span {
+          font-size: 14px;
+          color: #fff;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    .el-aside {
+      box-sizing: border-box;
+      background: #fff;
+      h2 {
+        font-size: 20px;
+        line-height: 40px;
+        text-align: center;
+        color: #666;
+        background: #f3fbff;
+      }
+      ul {
+        box-sizing: border-box;
+        padding: 2% 8%;
+        background: #fff;
+        border: 1px solid #F0F0F0;
+        li {
+          font-size: 14px;
+          line-height: 48px;
+          font-weight: 500;
+          color: #333;          
+          border-bottom: 1px solid #F0F0F0;
+          &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+          }
+          span {
+            margin-left: 6px;
+          }
+        }
+      }
+    }
+  }
 }
 .header-tabs {
   box-sizing: border-box;
   padding: 0 2.5%;
+  background: #fff;
   .bg-purple {
     padding: 0 3%;
     background: #fff;
@@ -203,6 +330,14 @@ export default {
     &:hover {
       transform: scale(1.1);
     }
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 600px)  {
+  .el-container {
+    padding: 0 !important;
+  }
+  .main-witch-number {
+    display: none;
   }
 }
 </style>
