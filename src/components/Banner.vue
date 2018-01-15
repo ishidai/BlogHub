@@ -10,7 +10,7 @@
         <div class="uk-position-center uk-position-medium uk-text-center">
           <div uk-slideshow-parallax="scale: 1,1,0.8">
             <h2 uk-slideshow-parallax="x: 200,0,0">bokeka.com</h2>
-            <p uk-slideshow-parallax="x: 400,0,0;">国内博客聚合导航站</p>
+            <p uk-slideshow-parallax="x: 400,0,0;">博客咖-国内博客聚合导航站</p>
           </div>
         </div>
       </li>
@@ -22,7 +22,7 @@
         <div class="uk-position-center uk-position-medium uk-text-center">
           <div uk-slideshow-parallax="scale: 1,1,0.8">
             <h2 uk-slideshow-parallax="x: 200,0,0">bokeka.com</h2>
-            <p uk-slideshow-parallax="x: 400,0,0;">国内博客聚合导航站</p>
+            <p uk-slideshow-parallax="x: 400,0,0;">博客咖-国内博客聚合导航站</p>
           </div>
         </div>
       </li>
@@ -34,7 +34,7 @@
         <div class="uk-position-center uk-position-medium uk-text-center">
           <div uk-slideshow-parallax="scale: 1,1,0.8">
             <h2 uk-slideshow-parallax="x: 200,0,0">bokeka.com</h2>
-            <p uk-slideshow-parallax="x: 400,0,0;">国内博客聚合导航站</p>
+            <p uk-slideshow-parallax="x: 400,0,0;">博客咖-国内博客聚合导航站</p>
           </div>
         </div>
       </li>
