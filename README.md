@@ -1,4 +1,4 @@
-# BlogHub  [![Build Status](https://travis-ci.org/ishidai/BlogHub.svg?branch=master)](https://travis-ci.org/ishidai/BlogHub)
+# 博客咖  [![Build Status](https://travis-ci.org/ishidai/BlogHub.svg?branch=master)](https://travis-ci.org/ishidai/BlogHub)
 
 # 独立博客聚合导航
 
@@ -23,6 +23,8 @@ UI设计：@[Tiffany.Hsu](https://weibo.com/u/5632998333)
 **18/01/06  支持会员登录，投稿，博客提交**
 
 **18/01/08  支持github单点登录**
+
+**18/01/13  添加注册会员和邮件确认功能**
 
 ## Build Setup
 
