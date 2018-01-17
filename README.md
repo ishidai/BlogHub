@@ -26,6 +26,8 @@ UI设计：@[Tiffany.Hsu](https://weibo.com/u/5632998333)
 
 **18/01/13  添加注册会员和邮件确认功能**
 
+**18/01/17  bokeka.com提交管局备案ing,修复主页时间显示，后台服务24小时开启中~**
+
 ## Build Setup
 
 ``` bash
