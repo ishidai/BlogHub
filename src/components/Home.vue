@@ -61,32 +61,33 @@
         </div>
       </el-col> -->
     </el-row>
-    
+
     <el-row :gutter="16" class="container">
       <el-container class="el-container">
         <el-col :xs="24" :sm="20" :md="18" :lg="16">
           <el-main class="el-main">
-            <div class="main-container" v-for="(item, index) in 10" :key="index">
+            <div class="main-container" v-for="(item, index) in posts" :key="index">
               <div class="main-content">
                 <div class="main-portrait">
                   <img src="../assets/images/11.jpg">
                 </div>
                 <div class="main-text">
-                  <h2>RubyConf RubyElixirConf Taiwan 2018 征求讲师与赞助</h2>
+                  <h2>{{ item.title }}</h2>
                   <p>
-                    <span class="underline">yudoawaru</span>
+                    <span class="underline">{{ item.username }}</span>
                     <span> • 最后由 </span>
                     <span class="underline">我抱着结衣</span>
-                    <span>回复于 {{index}} 天前</span>
+                    <span>回复于 {{ index }} 天前</span>
+                    <span> • 发表时间：{{ postDate(item.timestamp) }}</span>
                   </p>
                 </div>
               </div>
               <div class="main-witch-number">
-                <span>{{index}}</span>
+                <span>{{ item.comment_count }}</span>
               </div>
             </div>
           </el-main>
-        </el-col>        
+        </el-col>
         <el-col :xs="0" :sm="4" :md="6">
           <el-aside width="300px" class="el-aside">
             <div>
@@ -98,7 +99,7 @@
               </ul>
             </div>
           </el-aside>
-        </el-col>                
+        </el-col>
       </el-container>
     </el-row>
 
@@ -124,9 +125,11 @@ export default {
       activeName: 'first'
     };
   },
-  computed: mapGetters({
-    articles: "homePosts"
-  }),
+  computed: {
+    ...mapGetters([
+      'homePosts'
+    ]),
+  },
   components: {
     Banner,
     List,
@@ -134,15 +137,18 @@ export default {
     FooterBar
   },
   methods: {
+    postDate(date) {
+      return this.$moment(date).format('YYYY-MM-DD HH:mm:ss');
+    },
     getPage() {
       setTimeout(() => {
         const _this = this;
-        this.axios.get(consts.blogs).then(response => {
-            this.posts = response.data.blogs;
+        this.axios.get(consts.home).then(response => {
+            this.posts = response.data.posts
             if (this.posts) {
-              _this.isShow = false;
+              _this.isShow = false
             }
-            this.$store.dispatch("getAllPosts", this.posts);
+          this.$store.dispatch("getAllPosts", this.posts)
           })
           .catch(error => {
             _this.getPage();
@@ -190,7 +196,7 @@ export default {
 <style scoped lang="scss">
 #home {
   overflow-x: hidden;
-  background: #f2f2f2;  
+  background: #f2f2f2;
   .container {
     margin-top: 1%;
   }
@@ -223,7 +229,7 @@ export default {
           img {
             width: 100%;
             height: 100%;
-            border-radius: 50%;            
+            border-radius: 50%;
           }
         }
         .main-text {
@@ -275,7 +281,7 @@ export default {
           font-size: 14px;
           line-height: 48px;
           font-weight: 500;
-          color: #333;          
+          color: #333;
           border-bottom: 1px solid #F0F0F0;
           &:hover {
             text-decoration: underline;
@@ -310,7 +316,7 @@ export default {
       }
     }
     .content-text {
-      margin: 5%;      
+      margin: 5%;
       text-align: left;
       font-size: 12px;
     }
