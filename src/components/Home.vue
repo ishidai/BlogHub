@@ -72,7 +72,6 @@
                   <img src="../assets/images/11.jpg">
                 </div>
                 <div class="main-text">
-
                   <h2><router-link :to="{ name: 'content', params: { id: 53 }}">{{ item.title }}</router-link></h2>
                   <p>
                     <span class="underline">{{ item.username }}</span>
