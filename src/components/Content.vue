@@ -55,11 +55,11 @@
 
         <!-- 富文本区域 -->
         <div class="rich-container">
-              <img src="../assets/images/11.jpg">
-              <img src="../assets/images/11.jpg">
-              <img src="../assets/images/11.jpg">
-              <img src="../assets/images/11.jpg">
-              <img src="../assets/images/11.jpg">
+          <img src="../assets/images/11.jpg">
+          <img src="../assets/images/11.jpg">
+          <img src="../assets/images/11.jpg">
+          <img src="../assets/images/11.jpg">
+          <img src="../assets/images/11.jpg">
         </div>      
         <!-- End 富文本区域 -->      
         
