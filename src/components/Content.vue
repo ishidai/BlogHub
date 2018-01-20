@@ -1,6 +1,6 @@
 <template>
   <div style="background:#fff;">
-    <HeaderBar></HeaderBar>
+    <HeaderBar isLogin="isLogin"></HeaderBar>
     <div class="main">
       <div class="container">
         <!-- End 博客title and about -->
@@ -60,10 +60,14 @@ export default {
         title: '',
         content: '',
         username: '',
-        time: ''
+        time: '',
     };
   },
-  computed: {},
+  computed: {
+      isLogin() {
+          return this.$store.state.users.isLogin
+      }
+  },
   components: {
     HeaderBar,
     FooterBar

@@ -50,7 +50,15 @@ if (window.localStorage.getItem('token')) {
 
 const router = new Router({
   // mode: 'history',
-  routes
+  routes,
+  // scroll to top
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  }
 })
 
 router.beforeEach((to, from, next) => {

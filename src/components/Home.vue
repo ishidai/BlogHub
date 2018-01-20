@@ -113,8 +113,8 @@ import Banner from "./Banner.vue";
 import FooterBar from "./FooterBar.vue";
 import HeaderBar from "./HeaderBar.vue";
 import List from "./List.vue";
+import * as types from '../store/mutation-types'
 import { mapGetters } from "vuex";
-
 export default {
   name: "Home",
   data() {
@@ -187,6 +187,7 @@ export default {
 
     if (window.localStorage.getItem("token")) {
       this.isLogin = true;
+      this.$store.commit(types.IS_LOGIN)
     }
   }
 };

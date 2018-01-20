@@ -2,7 +2,8 @@ import * as types from '../mutation-types'
 
 // initial state
 const state = {
-  token: ''
+  token: '',
+  isLogin: false
 }
 
 // getters
@@ -21,6 +22,9 @@ const actions = {
 const mutations = {
   [types.GET_TOKEN] (state, { token }) {
     state.token = token
+  },
+  [types.IS_LOGIN] (state) {
+    state.isLogin = true
   }
 }
 
