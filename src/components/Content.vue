@@ -227,7 +227,6 @@ export default {
     }
     .rich-container {
       margin-top: 30px;
-      text-align: center;
     }
     .comment {
       margin-top: 50px;
