@@ -119,9 +119,7 @@ export default {
           body: this.textarea
         })
         .then(function(response) {
-          if (response.status === 201) {
-            _this.$router.push("/");
-          }
+          window.location.reload();
         })
         .catch(function(error) {
           console.log(error);
