@@ -28,6 +28,8 @@ UI设计：@[Tiffany.Hsu](https://weibo.com/u/5632998333)
 
 **18/01/17  bokeka.com提交管局备案ing,修复主页时间显示，后台服务24小时开启中~**
 
+**18/01/121 增加评论，内容页模块**
+
 ## Build Setup
 
 ``` bash
