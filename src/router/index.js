@@ -6,6 +6,7 @@ import Content from '@/components/Content'
 import Login from '@/components/Login'
 import QEditor from '@/components/QEditor'
 import Blog from '@/components/Blog'
+import * as types from '../store/mutation-types'
 
 Vue.use(Router)
 
@@ -45,6 +46,7 @@ const routes = [
 
 // 页面刷新时，重新赋值token
 if (window.localStorage.getItem('token')) {
+  store.commit(types.IS_LOGIN)
   store.dispatch('commitToken', window.localStorage.getItem('token'))
 }
 

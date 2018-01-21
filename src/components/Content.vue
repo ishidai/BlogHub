@@ -30,20 +30,30 @@
 
         <!-- 评论区域 -->
         <div class="comment">
-          <h2>评论 (0)</h2>
-          <div class="comment-login">登录后评论</div>
+          <h2>评论 ({{ totalCount }})</h2>
+          <div class="comment-login" v-if="!isLogin">登录后评论</div>
+          <div v-else>
+            <el-input
+              type="textarea"
+              :rows="2"
+              placeholder="请输入内容"
+              v-model="textarea">
+            </el-input>
+            <el-button type="primary" v-on:click="commitComment">提交</el-button>
+          </div>
           <ul>
-            <li v-for="(item, index) in 5" :key="index">
+            <li v-for="(item, index) in comments" :key="index">
               <div class="user-avatar">
                 <img src="../assets/images/11.jpg">
               </div>
               <div class="user-content">
-                <span>王辉的博客 2017-12-06 01:32</span>
-                <p>多谢分享</p>
+                <span>{{ item.username }} {{ postDate(item.timestamp) }}</span>
+                <p>{{ item.body }}</p>
               </div>
             </li>
           </ul>
         </div>
+
         <!-- End 评论区域 -->
       </div>
     </div>
@@ -54,6 +64,10 @@
 import HeaderBar from "./HeaderBar.vue";
 import FooterBar from "./FooterBar.vue";
 import consts from "../constant/consts";
+import Vue from "vue";
+import { Input } from "element-ui";
+Vue.component(Input.name, Input);
+
 export default {
   data() {
     return {
@@ -61,6 +75,9 @@ export default {
         content: '',
         username: '',
         time: '',
+        textarea: '',
+        comments: [],
+        totalCount: ''
     };
   },
   computed: {
@@ -86,10 +103,29 @@ export default {
       _this.username = response.data.username
       _this.time = response.data.timestamp
     })
+
+    this.axios.get(`/api/v1.0/posts/${this.$route.params.id}/comments/`)
+      .then(response => {
+          _this.comments = response.data.comments
+          _this.totalCount = response.data.count
+      })
   },
   methods: {
     postDate(date) {
       return this.$moment(date).format('YYYY-MM-DD HH:mm:ss');
+    },
+    commitComment() {
+      this.axios.post(`/api/v1.0/posts/${this.$route.params.id}/comments/`, {
+          body: this.textarea
+        })
+        .then(function(response) {
+          if (response.status === 201) {
+            _this.$router.push("/");
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
   }
 };
