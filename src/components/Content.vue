@@ -32,14 +32,14 @@
         <div class="comment">
           <h2>评论 ({{ totalCount }})</h2>
           <div class="comment-login" v-if="!isLogin">登录后评论</div>
-          <div v-else>
+          <div class="comment-text" v-else>
             <el-input
               type="textarea"
               :rows="2"
-              placeholder="请输入内容"
+              placeholder="请输入评论内容"
               v-model="textarea">
             </el-input>
-            <el-button type="primary" v-on:click="commitComment">提交</el-button>
+            <el-button class="comment-commit" type="success" @click="commitComment">提交评论</el-button>
           </div>
           <ul>
             <li v-for="(item, index) in comments" :key="index">
@@ -71,19 +71,19 @@ Vue.component(Input.name, Input);
 export default {
   data() {
     return {
-        title: '',
-        content: '',
-        username: '',
-        time: '',
-        textarea: '',
-        comments: [],
-        totalCount: ''
+      title: '',
+      content: '',
+      username: '',
+      time: '',
+      textarea: '',
+      comments: [],
+      totalCount: ''
     };
   },
   computed: {
-      isLogin() {
-          return this.$store.state.users.isLogin
-      }
+    isLogin() {
+      return this.$store.state.users.isLogin
+    }
   },
   components: {
     HeaderBar,
@@ -116,15 +116,14 @@ export default {
     },
     commitComment() {
       this.axios.post(`/api/v1.0/posts/${this.$route.params.id}/comments/`, {
-          body: this.textarea
-        })
-        .then(function(response) {
-          window.location.reload();
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-      
+        body: this.textarea
+      })
+      .then(function(response) {
+        window.location.reload();
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
     }
   }
 };
@@ -278,6 +277,14 @@ export default {
         background: #27c24c;
         border-radius: 2px;
         outline: 0 !important;
+      }
+      .comment-text {
+        margin-top: 15px;
+        text-align: right;        
+        .comment-commit {
+          margin: 15px 0 0 0;
+          font-size: 12px;
+        }
       }
       ul {
         font-size: 14px;
