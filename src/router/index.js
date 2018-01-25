@@ -6,6 +6,7 @@ import Content from '@/components/Content'
 import Login from '@/components/Login'
 import QEditor from '@/components/QEditor'
 import Blog from '@/components/Blog'
+import SignIn from '@/components/SignIn'
 import * as types from '../store/mutation-types'
 
 Vue.use(Router)
@@ -25,6 +26,11 @@ const routes = [
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/signin',
+      name: 'signin',
+      component: SignIn
     },
     {
       path: '/blog',
