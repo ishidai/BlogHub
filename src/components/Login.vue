@@ -22,6 +22,7 @@
 </template>
 
 <script>
+  import * as types from '../store/mutation-types'
 import consts from "../constant/consts";
 export default {
   data() {
@@ -54,6 +55,7 @@ export default {
               window.localStorage.setItem("token", _this.token);
               this.$store.dispatch("commitToken", _this.token);
               if (_this.token) {
+                _this.$store.commit(types.IS_LOGIN)
                 _this.$router.push("/");
               }
             })
