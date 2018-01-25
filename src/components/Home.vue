@@ -14,19 +14,19 @@
       <el-tabs v-model="activeName" @tab-click="handleClick" class="header-tabs" type="card">
         <el-tab-pane label="基佬" name="first">
           <span slot="label"><i class="el-icon-date"></i>基佬0</span>
-          <BlogClassify></BlogClassify>
+          <blog-classify></blog-classify>
         </el-tab-pane>
         <el-tab-pane label="基佬" name="second">
           <span slot="label"><i class="el-icon-date"></i>基佬1</span>
-          <BlogClassify></BlogClassify>
+          <blog-classify></blog-classify>
         </el-tab-pane>
         <el-tab-pane label="基佬" name="third">
           <span slot="label"><i class="el-icon-date"></i>基佬2</span>
-          <BlogClassify></BlogClassify>
+          <blog-classify></blog-classify>
         </el-tab-pane>
         <el-tab-pane label="基佬" name="fourth">
           <span slot="label"><i class="el-icon-date"></i>基佬3</span>
-          <BlogClassify></BlogClassify>
+          <blog-classify></blog-classify>
         </el-tab-pane>
       </el-tabs>
       <!-- <el-col :xs="24" :sm="6" :md="8" :lg="13" :xl="15">
