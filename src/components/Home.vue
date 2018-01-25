@@ -13,46 +13,20 @@
     <el-row :gutter="16">
       <el-tabs v-model="activeName" @tab-click="handleClick" class="header-tabs" type="card">
         <el-tab-pane label="基佬" name="first">
-          <span slot="label"><i class="el-icon-date"></i>基佬1</span>
-          <el-col :xs="24" :sm="8" :md="6" :lg="4" :xl="4" v-for="(item, index) in posts" :key="index">
-            <div class="grid-content bg-purple">
-              <div class="content-bg">
-                <img src="../assets/images/11.jpg">
-                <span>博客名称</span>
-              </div>
-              <div class="content-text">
-                专业的博客平台
-              </div>
-              <div class="content-footer">
-                <div class="left-footer">
-                  <i class="el-icon-view"></i>
-                  <span>123</span>
-                </div>
-                <div class="right-footer">
-                  <i class="el-icon-star-on"></i>
-                  <span>321</span>
-                </div>
-              </div>
-            </div>
-          </el-col>
+          <span slot="label"><i class="el-icon-date"></i>基佬0</span>
+          <BlogClassify></BlogClassify>
         </el-tab-pane>
         <el-tab-pane label="基佬" name="second">
           <span slot="label"><i class="el-icon-date"></i>基佬1</span>
-          <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-            <div class="grid-content bg-purple">基佬1</div>
-          </el-col>
+          <BlogClassify></BlogClassify>
         </el-tab-pane>
         <el-tab-pane label="基佬" name="third">
           <span slot="label"><i class="el-icon-date"></i>基佬2</span>
-          <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-            <div class="grid-content bg-purple">基佬2</div>
-          </el-col>
+          <BlogClassify></BlogClassify>
         </el-tab-pane>
         <el-tab-pane label="基佬" name="fourth">
           <span slot="label"><i class="el-icon-date"></i>基佬3</span>
-          <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-            <div class="grid-content bg-purple">基佬3</div>
-          </el-col>
+          <BlogClassify></BlogClassify>
         </el-tab-pane>
       </el-tabs>
       <!-- <el-col :xs="24" :sm="6" :md="8" :lg="13" :xl="15">
@@ -112,6 +86,7 @@ import consts from "../constant/consts";
 import Banner from "./Banner.vue";
 import FooterBar from "./FooterBar.vue";
 import HeaderBar from "./HeaderBar.vue";
+import BlogClassify from "./BlogClassify.vue";
 import List from "./List.vue";
 import { mapGetters } from "vuex";
 export default {
@@ -133,7 +108,8 @@ export default {
     Banner,
     List,
     HeaderBar,
-    FooterBar
+    FooterBar,
+    BlogClassify
   },
   methods: {
     postDate(date) {
