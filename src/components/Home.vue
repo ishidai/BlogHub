@@ -274,44 +274,6 @@ export default {
   box-sizing: border-box;
   padding: 0 2.5%;
   background: #fff;
-  .bg-purple {
-    padding: 0 3%;
-    background: #fff;
-    .content-bg {
-      margin: 5%;
-      width: 100%;
-      img {
-        width: 30px;
-        height: 30px;
-      }
-      span {
-        margin-left: 8px;
-        font-size: 12px;
-        font-weight: bold;
-      }
-    }
-    .content-text {
-      margin: 5%;
-      text-align: left;
-      font-size: 12px;
-    }
-    .content-footer {
-      display: flex;
-      justify-content: space-between;
-      margin: 5% 5% 0;
-      font-size: 10px;
-    }
-  }
-  .grid-content {
-    margin-bottom: 5%;
-    border-radius: 10px;
-    min-height: 100px;
-    padding: 6px;
-    transition: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
 }
 @media screen and (min-width: 320px) and (max-width: 600px)  {
   .el-container {
