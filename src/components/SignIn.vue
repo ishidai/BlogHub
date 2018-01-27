@@ -80,12 +80,9 @@
             const _this = this;
             this.axios.post(consts.signin, {
               headers: { "Content-Type": "application/x-www-form-urlencoded" },
-              timeout: 6000,
-              auth: {
-                email: `${_this.form.email}`,
-                username: `${_this.form.username}`,
-                password: `${_this.form.pass}`
-              }
+              email: `${_this.form.email}`,
+              username: `${_this.form.username}`,
+              password: `${_this.form.pass}`
             }).then(response => {
               console.log(response.data);
               if (response.data.code === '500') {
@@ -98,6 +95,13 @@
                 _this.$notify({
                   title: '成功',
                   message: `恭喜您注册成功`,
+                  duration: 0
+                });
+                _this.$router.push('login')
+              } else if (response.data.code === '501') {
+                _this.$notify({
+                  title: '警告',
+                  message: `用户名已经被注册过了`,
                   duration: 0
                 });
                 _this.$router.push('login')
