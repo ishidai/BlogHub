@@ -98,7 +98,7 @@ export default {
           }).then(res => {
           _this.user = res.data;
         }).catch((err) => {
-            console.log('请求' + err)
+//            console.log(err)
         })
       }
     }

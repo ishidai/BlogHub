@@ -3,7 +3,8 @@ import * as types from '../mutation-types'
 // initial state
 const state = {
   token: '',
-  isLogin: false
+  isLogin: false,
+  qiniuToken: ''
 }
 
 // getters
@@ -25,6 +26,9 @@ const mutations = {
   },
   [types.IS_LOGIN] (state) {
     state.isLogin = true
+  },
+  [types.QINIU] (state, token) {
+    state.qiniuToken = token
   }
 }
 

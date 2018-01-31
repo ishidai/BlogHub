@@ -1,6 +1,6 @@
 <template>
   <div id="Login">
-    <el-form label-position="left" :model="form" status-icon :rules="rules" ref="form" label-width="90px" class="demo-ruleForm">
+    <el-form label-position="left" :model="form" status-icon  ref="form" label-width="90px" class="demo-ruleForm">
       <el-form-item label="邮箱" prop="email"
                     :rules="[
               { required: false, message: '请输入邮箱地址', trigger: 'blur' },

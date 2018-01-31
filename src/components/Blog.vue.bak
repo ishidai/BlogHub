@@ -7,8 +7,10 @@
         class="upload-demo"
         action="//up.qiniup.com"
         type="drag"
+        :accept="accepts"
         :before-upload="beforeUpload"
         :auto-upload="true"
+        :headers="headers"
         :on-success="handleSuccess"
         :data="form"
       >
@@ -53,6 +55,7 @@
   export default {
     data() {
       return {
+        accepts: 'image/jpeg, image/jpg, image/png, image/gif, application/zip, application/x-zip-compressed',
         blogName: '',
         blogDesc: '',
         imageUrl: '',
@@ -65,6 +68,9 @@
       }
     },
     computed: {
+      headers() {
+        return this.$store.state.qiniuToken
+      }
     },
     components: {
       HeaderBar,
@@ -72,40 +78,35 @@
     },
     methods: {
       handleSuccess(res, file, fileList) {
+        console.log('handleSuccess')
         this.imageUrl = `${this.bucketHost}/${res.key}`
       },
-      getToken: async function(key) {
-        const _this = this
-        console.log('key:', key)
-        return new Promise((resolve) => {
-          this.axios.get(`/api/v1.0/qiniu/token/${key}`)
-            .then((res) => {
-              _this.form.key = key
-              _this.form.token = res.data.token
-              resolve()
-            }).catch((err) => {
-              console.log(err)
+      genToken: async function(key) {
+          const _this = this
+          return new Promise((resolve) => {
+            this.axios.get(`/api/v1.0/qiniu/token/${key}`)
+              .then((res) => {
+                console.log('/api/v1.0/qiniu/token/')
+                _this.form.key = key
+                _this.form.token = res.data.token
+                console.log('res.data.token', res.data.token)
+                _this.$store.commit('qiniu', res.data.token)
+                console.log('form:', _this.form)
+                resolve()
+              }).catch((err) => {
+                console.log(err)
+            })
           })
-        })
       },
       beforeUpload: async function(file) {
-        const isJPG = file.type === 'image/jpeg';
-        const isLt2M = file.size / 1024 / 1024 < 2;
-
-        if (!isJPG) {
-          this.$message.error('上传头像图片只能是 JPG 格式!');
-        }
-
-        if (!isLt2M) {
-          this.$message.error('上传头像图片大小不能超过 2MB!');
-        }
-
         let currentTime = this.$moment().format('YYYYMMDDHHmmss').toString()
         let prefixTime = this.$moment(file.lastModifiedDate).format('HHmmss').toString()
         let fileName = file.name
         let key = encodeURI(`${currentTime}_${prefixTime}${fileName}`)
-        await this.getToken(key)
-        return isJPG && isLt2M;
+        await this.genToken(key)
+        console.log('genToken.....')
+
+        return this.form;
       },
       onSubmit() {
         const _this = this;

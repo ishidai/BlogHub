@@ -45,7 +45,7 @@ response => {
         //   })
       }
     }
-    console.log('XXXXXXXXXXXXX', JSON.stringify(error));//console : Error: Request failed with status code 402
+    // console.log('XXXXXXXXXXXXX', JSON.stringify(error));//console : Error: Request failed with status code 402
     return Promise.reject(error.response.data)
   })
 
