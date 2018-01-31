@@ -30,6 +30,8 @@ UI设计：@[Tiffany.Hsu](https://weibo.com/u/5632998333)
 
 **18/01/21 增加评论，内容页模块**
 
+**18/01/31 支持图片储存七牛云**
+
 ## Build Setup
 
 ``` bash
