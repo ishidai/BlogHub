@@ -96,9 +96,10 @@ export default {
               username: token
             }
           }).then(res => {
-          _this.user = res.data;
+            _this.user = res.data;
         }).catch((err) => {
-//            console.log(err)
+            window.localStorage.clear();
+            console.log(err)
         })
       }
     }

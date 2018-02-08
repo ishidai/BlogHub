@@ -5,10 +5,9 @@
     :isPublish="true"
     :isLogin="true"
     @commitActicle="commitActicle"></header-bar>
-    <div  class="quill-code">
-      <div class="uk-margin" style="width: 100%">
-        <el-input v-model="inputTitle" placeholder="请输入标题" style="float: left;width: 50%"></el-input>
-        <el-select v-model="valueChannel" placeholder="请选择栏目" style="margin-left: 10px;">
+      <div>
+        <el-input v-model="inputTitle" placeholder="请输入标题"></el-input>
+        <el-select v-model="valueChannel" placeholder="请选择栏目">
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -18,6 +17,7 @@
         </el-select>
       </div>
       <quill-editor v-model="content"
+                    class="quill-code"
                     ref="myQuillEditor"
                     :options="editorOption"
                     @change="onEditorChange($event)"
@@ -26,7 +26,6 @@
                     @ready="onEditorReady($event)">
       </quill-editor>
     </div>
-  </div>
 </template>
 
 <script>
@@ -49,27 +48,11 @@ export default {
       options: [
         {
           value: "选项1",
-          label: "黄金糕"
-        },
-        {
-          value: "选项2",
-          label: "双皮奶"
-        },
-        {
-          value: "选项3",
-          label: "蚵仔煎"
-        },
-        {
-          value: "选项4",
-          label: "龙须面"
-        },
-        {
-          value: "选项5",
-          label: "北京烤鸭"
+          label: "黄金糕1111"
         }
       ],
       valueChannel: "",
-      content: "<h2>I am Example</h2>",
+      content: "",
       editorOption: {
         modules: {
           toolbar: [
@@ -150,6 +133,19 @@ export default {
       return this.$refs.myQuillEditor.quill;
     }
   },
+  created() {
+      const _this = this;
+      this.axios.get(consts.categories).then((res) => {
+        console.log('====>', res.data.categorys)
+        res.data.categorys.forEach((item) => {
+          _this.options.concat({
+              value:item.id,
+              label:item.name
+          })
+        })
+        console.log('===options=>', _this.options)
+      })
+  },
   mounted() {
     console.log("this is current quill instance object", this.editor);
   },
@@ -160,13 +156,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.hide-alert {
-  display: none;
-}
-.quill-code {
-  margin-top: 10px;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-}
+  .hide-alert {
+    display: none;
+  }
+  .quill-code {
+    margin-top: 10px;
+    margin: 0 100px;
+    height: 500px;
+  }
 </style>

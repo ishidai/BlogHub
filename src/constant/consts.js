@@ -6,4 +6,5 @@ export default {
   posts: '/api/v1.0/posts/',
   blogs: '/api/v1.0/blogs/',
   signin: '/api/v1.0/signin',
+  categories: '/api/v1.0/categories',
 }

@@ -4,25 +4,29 @@
       :isLogin="true"></header-bar>
     <div style="width: 50%;margin: 20px auto;">
       <el-upload
-        class="upload-demo"
+        class="avatar-uploader"
         action="//up.qiniup.com"
         type="drag"
         :before-upload="beforeUpload"
         :auto-upload="true"
+        :show-file-list="false"
         :on-success="handleSuccess"
-        :data="form"
-      >
-        <el-button size="small" type="primary">点击上传</el-button>
-        <div slot="tip" class="el-upload__tip">只能上传jpg/png/zip文件，且不超过500kb</div>
+        :data="form">
+        <img v-if="imageUrl" :src="imageUrl" class="avatar">
+        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
       </el-upload>
       <el-input
         type="textarea"
         autosize
         placeholder="请输入博客名称"
+        :maxlength="30"
         v-model="blogName">
       </el-input>
       <div style="margin: 20px 0;"></div>
-      <el-input placeholder="请输入博客地址" v-model="blogUrl">
+      <el-input placeholder="请输入博客地址"
+                v-model="blogUrl"
+                @blur="checkUrl"
+                :maxlength="30">
         <template slot="prepend">Http://</template>
       </el-input>
       <div style="margin: 20px 0;"></div>
@@ -30,10 +34,11 @@
         type="textarea"
         :autosize="{ minRows: 2, maxRows: 4}"
         placeholder="一句话介绍博客"
+        :maxlength="130"
         v-model="blogDesc">
       </el-input>
       <div style="margin: 20px 0;"></div>
-      <el-button type="primary" @click="onSubmit">提交</el-button>
+      <el-button type="primary" @click="onSubmit" >提交</el-button>
     </div>
     <footer-bar></footer-bar>
   </div>
@@ -61,6 +66,7 @@
           key: '',
           token: ''
         },
+        check: false,
         bucketHost: 'http://p31mtjzxq.bkt.clouddn.com/',   // 上传图片的外链域名,七牛设置的
       }
     },
@@ -72,7 +78,20 @@
     },
     methods: {
       handleSuccess(res, file, fileList) {
-        this.imageUrl = `${this.bucketHost}/${res.key}`
+        console.log('res ======>', JSON.stringify(res))
+        this.imageUrl = `${this.bucketHost}${res.key}`
+      },
+      checkUrl() {
+        const url = `http://${this.blogUrl}`
+        const isUrl = this.url(url);
+        if (!isUrl) {
+          this.$message.error('域名不符合格式!');
+        } else {
+            this.check = true;
+        }
+      },
+      url(value) {
+        return /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(value);
       },
       getToken: async function(key) {
         const _this = this
@@ -100,14 +119,36 @@
           this.$message.error('上传头像图片大小不能超过 2MB!');
         }
 
-        let currentTime = this.$moment().format('YYYYMMDDHHmmss').toString()
-        let prefixTime = this.$moment(file.lastModifiedDate).format('HHmmss').toString()
-        let fileName = file.name
-        let key = encodeURI(`${currentTime}_${prefixTime}${fileName}`)
-        await this.getToken(key)
-        return isJPG && isLt2M;
+        if (isJPG && isLt2M) {
+          let currentTime = this.$moment().format('YYYYMMDDHHmmss').toString()
+          let prefixTime = this.$moment(file.lastModifiedDate).format('HHmmss').toString()
+          let key = encodeURI(`${currentTime}_${prefixTime}${this.generateUUID()}`)
+          await this.getToken(key)
+          return true;
+        } else {
+           return false;
+        }
+      },
+      generateUUID() {
+        let d = new Date().getTime();
+        let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          let r = (d + Math.random()*16)%16 | 0
+          d = Math.floor(d/16)
+          return (c=='x' ? r : (r&0x7|0x8)).toString(16)
+        })
+        return uuid
       },
       onSubmit() {
+        if (!(this.blogName || this.blogDesc || this.blogUrl || this.form.token)) {
+          this.$message.warning('输入不能为空');
+          return;
+        }
+
+        if (!this.check) {
+          this.$message.error('域名不符合格式!');
+          return;
+        }
+
         const _this = this;
         this.axios.post(consts.blogs, {
           name: this.blogName,
@@ -128,7 +169,7 @@
   }
 </script>
 
-<style scoped>
+<style >
   .avatar-uploader .el-upload {
     border: 1px dashed #d9d9d9;
     border-radius: 6px;

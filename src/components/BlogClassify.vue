@@ -1,12 +1,12 @@
 <template>
   <div>
     <el-col :xs="24" :sm="8" :md="6" :lg="4" :xl="4" v-for="(item, index) in blogs" :key="index">
-      <div class="grid-content bg-purple">
+      <div class="grid-content bg-purple" >
         <div class="content-bg">
           <img v-bind:src="item.img" v-if="item.img">
           <img src="../assets/images/11.jpg" v-else>
-          <span>{{ item.name }}</span>
-        </div>
+          <span><a target="_blank" :href="`http://${item.url}`">{{ item.name }}</a></span>
+      </div>
         <div class="content-text">
           {{ item.description }}
         </div>
