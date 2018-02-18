@@ -53,6 +53,7 @@
                     <span class="underline">我抱着结衣</span>
                     <span>回复于 {{ index }} 天前</span>
                     <span> • 发表时间：{{ postDate(item.timestamp) }}</span>
+                    <span> • 阅读量：{{ item.num_view }}</span>
                   </p>
                 </div>
               </div>
@@ -134,7 +135,7 @@ export default {
               console.log("error.request");
               if (error.request.readyState == 4 && error.request.status == 0) {
                 //我在这里重新请求
-                //                    _this.getPage()
+                // _this.getPage()
               }
             } else {
               console.log("Error", error.message);

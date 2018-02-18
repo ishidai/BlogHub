@@ -5,20 +5,21 @@
         <div class="content-bg">
           <img v-bind:src="item.img" v-if="item.img">
           <img src="../assets/images/11.jpg" v-else>
-          <span><a target="_blank" :href="`http://${item.url}`">{{ item.name }}</a></span>
-      </div>
+          <span><a v-on:click="clickCount(item.id)" target="_blank" :href="`http://${item.url}`">{{ item.name }}</a></span>
+          <!--<span><router-link v-on:click.native="clickCount" to="`http://${item.url}`">{{ item.name }}</router-link></span>-->
+        </div>
         <div class="content-text">
           {{ item.description }}
         </div>
         <div class="content-footer">
           <div class="left-footer">
             <i class="el-icon-view"></i>
-            <span>123</span>
+            <span>{{ item.num_view }}</span>
           </div>
-          <div class="right-footer">
-            <i class="el-icon-star-on"></i>
-            <span>321</span>
-          </div>
+            <div class="right-footer" @click="collectBlog(item.id)">
+              <a><i class="el-icon-star-off"></i></a>
+              <span>321</span>
+            </div>
         </div>
       </div>
     </el-col>
@@ -42,6 +43,12 @@
           })
         },
         methods: {
+          clickCount(id) {
+            this.axios.get(`${consts.blogs}${id}`)
+          },
+          collectBlog(id) {
+            console.log('collectBlog')
+          }
         },
     }
 </script>
