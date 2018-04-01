@@ -4,18 +4,23 @@ import * as types from '../mutation-types'
 const state = {
   token: '',
   isLogin: false,
-  qiniuToken: ''
+  qiniuToken: '',
+  userId: '0'
 }
 
 // getters
 const getters = {
-  getToken: state => state.token
+  getToken: state => state.token,
+  getUserId: state => state.userId
 }
 
 // actions
 const actions = {
   commitToken ({ commit }, token) {
     commit(types.GET_TOKEN, { token })
+  },
+  saveUserId ({ commit }, userId) {
+    commit(types.USER_ID, userId )
   }
 }
 
@@ -29,6 +34,9 @@ const mutations = {
   },
   [types.QINIU] (state, token) {
     state.qiniuToken = token
+  },
+  [types.USER_ID] (state, id) {
+    state.userId = id
   }
 }
 

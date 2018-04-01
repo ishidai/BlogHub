@@ -1,10 +1,10 @@
 <template>
-  <div class="uk-background-primary uk-light ">
-  <nav  uk-navbar>
+<div class="uk-background-primary uk-light ">
+  <nav uk-navbar>
     <div class="uk-navbar-left">
       <ul class="uk-navbar-nav">
-        <li class="uk-active"><a href="/">发现</a></li>
-        <li>
+        <li class="uk-active"><a href="/">博客咖</a></li>
+        <!-- <li>
           <a href="#">Parent</a>
           <div class="uk-navbar-dropdown">
             <ul class="uk-nav uk-navbar-dropdown-nav">
@@ -14,7 +14,7 @@
             </ul>
           </div>
         </li>
-        <li><a href="/">Item</a></li>
+        <li><a href="/">Item</a></li> -->
       </ul>
 
     </div>
@@ -32,19 +32,21 @@
           <a href="#" style="font-weight: bold">{{ user.username }}</a>
           <div class="uk-navbar-dropdown">
             <ul class="uk-nav uk-navbar-dropdown-nav">
-              <li class="uk-active"><a href="javascript:" @click="blogCommit()"  >博客提交</a></li>
-              <li class="uk-active"><a href="javascript:" @click="publish()"  >投稿</a></li>
-              <li><a href="javascript:" @click="logout()"  >登出</a></li>
+              <li class="uk-active"><a href="javascript:" @click="blogCommit()">博客提交</a></li>
+              <li class="uk-active"><a href="javascript:" @click="publish()">投稿</a></li>
+              <li><a href="javascript:" @click="logout()">登出</a></li>
             </ul>
           </div>
         </li>
       </ul>
     </div>
-  </nav></div>
+  </nav>
+</div>
 </template>
 
 <script>
 import constans from "../constant/consts";
+import * as types from '../store/mutation-types';
 export default {
   props: {
     isLogin: Boolean,
@@ -77,7 +79,8 @@ export default {
       });
     }
   },
-  created() {},
+  created() {
+  },
   mounted() {
     const _this = this;
     if (this.isLogin) {
@@ -86,20 +89,20 @@ export default {
       if (isGithub) {
         this.axios.get(`https://api.github.com/user?access_token=${token}&scope=&token_type=bearer`).then(res => {
           _this.user = res.data;
-          _this.user['username']= res.data.name;
+          _this.user['username'] = res.data.name;
           _this.$store.dispatch("commitToken", token);
         })
       } else {
         this.axios.get(constans.user, {
-            timeout: 6000,
-            auth: {
-              username: token
-            }
-          }).then(res => {
-            _this.user = res.data;
+          timeout: 6000,
+          auth: {
+            username: token
+          }
+        }).then(res => {
+          _this.user = res.data.result;
         }).catch((err) => {
-            window.localStorage.clear();
-            console.log(err)
+          console.log(err)
+          window.localStorage.clear();
         })
       }
     }

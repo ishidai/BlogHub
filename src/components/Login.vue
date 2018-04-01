@@ -12,7 +12,7 @@
         <el-input type="password" v-model="form.pwd" auto-complete="off"></el-input>
       </el-form-item>
       <el-button class="botton" type="primary" @click="login('form')">登录</el-button>
-      <a  class="botton1" href="http://67.218.140.125:5000/api/v1.0/login/github">
+      <a  class="botton1" href="http://127.0.0.1:5000/api/v1.0/login/github">
         <el-button class="botton" type="success">gitHub登录</el-button>
       </a>
       <el-button class="botton" type="info" plain @click="resetFrom('form')">重置</el-button>
@@ -41,25 +41,24 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           const _this = this;
-          this.axios
-            .get(consts.login, {
+          this.axios.get(consts.login, {
               headers: { "Content-Type": "application/x-www-form-urlencoded" },
               timeout: 6000,
               auth: {
                 username: `${_this.form.email}`,
                 password: `${_this.form.pwd}`
               }
-            })
-            .then(response => {
+            }).then(response => {
+              console.log('user --->', response.data);
               _this.token = response.data.token;
               window.localStorage.setItem("token", _this.token);
               this.$store.dispatch("commitToken", _this.token);
+              this.$store.dispatch("saveUserId", response.data.user_id);
               if (_this.token) {
                 _this.$store.commit(types.IS_LOGIN)
                 _this.$router.push("/");
               }
-            })
-            .catch(function(error) {
+            }).catch(function(error) {
               console.log(error);
             });
         } else {

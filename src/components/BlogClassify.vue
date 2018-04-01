@@ -16,9 +16,9 @@
             <i class="el-icon-view"></i>
             <span>{{ item.num_view }}</span>
           </div>
-            <div class="right-footer" @click="collectBlog(item.id)">
-              <a><i class="el-icon-star-off"></i></a>
-              <span>321</span>
+            <div class="right-footer" @click="collectBlog(item.id, index)">
+              <a><i :class="item.is_collect ? 'el-icon-star-on' : 'el-icon-star-off'"></i></a>
+              <span>{{ item.collect_num }}</span>
             </div>
         </div>
       </div>
@@ -31,22 +31,35 @@
     export default {
         data() {
             return {
-              blogs: []
+              blogs: [],
+              isCollect: false
             }
         },
         computed: {},
         components: {
         },
         created() {
-          this.axios.get(consts.blogs).then(response => {
+          const user_id = this.$store.getters.getUserId;
+          this.axios.get(`${consts.show_blogs}/${user_id}`).then(response => {
             this.blogs = response.data.blogs
-          })
+          }).catch(err => {
+            console.log(err);
+          });
         },
         methods: {
           clickCount(id) {
             this.axios.get(`${consts.blogs}${id}`)
           },
-          collectBlog(id) {
+          collectBlog(id, index) {
+            this.axios.get(`${consts.collect}/${id}`, {
+              timeout: 6000,
+              auth: {
+                username: this.$store.state.users.token
+              }
+            }).then((res) => {
+              this.$set(this.$data.blogs[index], 'collect_num', res.data.count)
+              this.$set(this.$data.blogs[index], 'is_collect', res.data.isCollect)
+            })
             console.log('collectBlog')
           }
         },
@@ -93,4 +106,3 @@
   }
 }
 </style>
-

@@ -5,7 +5,7 @@ import router from './router'
 
 // axios 配置
 axios.defaults.timeout = 6000
-axios.defaults.baseURL = 'http://67.218.140.125:5000'
+axios.defaults.baseURL = 'http://127.0.0.1:5000'
 
 // http request 拦截器
 axios.interceptors.request.use(
@@ -34,20 +34,19 @@ response => {
   return response
   },
   error => {
-    if (error.response) {
-      switch (error.response.status) {
-        // case 401:
-        //   // 401 清除token信息并跳转到登录页面
-        //   store.commit(types.LOGOUT)
-        //   router.replace({
-        //     path: 'login',
-        //     query: {redirect: router.currentRoute.fullPath}
-        //   })
-      }
-    }
+    // if (error.response) {
+    //   switch (error.response.status) {
+    //     // case 401:
+    //     //   // 401 清除token信息并跳转到登录页面
+    //     //   store.commit(types.LOGOUT)
+    //     //   router.replace({
+    //     //     path: 'login',
+    //     //     query: {redirect: router.currentRoute.fullPath}
+    //     //   })
+    //   }
+    // }
     // console.log('XXXXXXXXXXXXX', JSON.stringify(error));//console : Error: Request failed with status code 402
-    return Promise.reject(error.response.data)
+    return Promise.reject()
   })
 
 export default axios
-

@@ -50,8 +50,7 @@
                   <p>
                     <span class="underline">{{ item.username }}</span>
                     <span> • 最后由 </span>
-                    <span class="underline">我抱着结衣</span>
-                    <span>回复于 {{ index }} 天前</span>
+                    <span class="underline">{{ item.comment_user_last }} 回复</span>
                     <span> • 发表时间：{{ postDate(item.timestamp) }}</span>
                     <span> • 阅读量：{{ item.num_view }}</span>
                   </p>
@@ -89,6 +88,7 @@ import FooterBar from "./FooterBar.vue";
 import HeaderBar from "./HeaderBar.vue";
 import BlogClassify from "./BlogClassify.vue";
 import List from "./List.vue";
+import * as types from '../store/mutation-types'
 import { mapGetters } from "vuex";
 export default {
   name: "Home",
@@ -117,32 +117,30 @@ export default {
       return this.$moment(date).format('YYYY-MM-DD HH:mm:ss');
     },
     getPage() {
-      setTimeout(() => {
         const _this = this;
         this.axios.get(consts.home).then(response => {
             this.posts = response.data.posts
             if (this.posts) {
               _this.isShow = false
             }
-          this.$store.dispatch("getAllPosts", this.posts)
-          })
-          .catch(error => {
-            _this.getPage();
-            if (error.response) {
-              console.log(error.response);
-            } else if (error.request) {
+            this.$store.dispatch("getAllPosts", this.posts)
+          }).catch(error => {
+            console.log(error);
+            // _this.getPage();
+            // if (error.response) {
+              // console.log(error.response);
+            // if (error.request) {
               //                  console.log(error.request)
-              console.log("error.request");
-              if (error.request.readyState == 4 && error.request.status == 0) {
+              // console.log("error.request");
+              // if (error.request.readyState == 4 && error.request.status == 0) {
                 //我在这里重新请求
                 // _this.getPage()
-              }
-            } else {
-              console.log("Error", error.message);
-            }
-            console.log(error.config);
+              // }
+            // } else {
+              // console.log("Error", error.message);
+            // }
+            // console.log(error.config);
           });
-      }, 0);
     },
     publish() {
       this.$router.push("post");

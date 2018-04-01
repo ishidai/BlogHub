@@ -155,13 +155,11 @@
           description: this.blogDesc,
           blog_url: this.blogUrl,
           image_url: this.imageUrl
-        })
-          .then(function(response) {
+        }).then(function(response) {
             if (response.status === 201) {
               _this.$router.push("/");
             }
-          })
-          .catch(function(error) {
+          }).catch(function(error) {
             console.log(error);
           });
       }
