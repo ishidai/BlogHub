@@ -6,6 +6,7 @@ import Content from '@/components/Content'
 import Login from '@/components/Login'
 import QEditor from '@/components/QEditor'
 import Blog from '@/components/Blog'
+import Programa from '@/components/programa'
 import SignIn from '@/components/SignIn'
 import * as types from '../store/mutation-types'
 
@@ -31,6 +32,11 @@ const routes = [
       path: '/signin',
       name: 'signin',
       component: SignIn
+    },
+    {
+      path: '/programa',
+      name: 'programa',
+      component: Programa
     },
     {
       path: '/blog',
