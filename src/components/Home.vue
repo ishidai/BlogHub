@@ -11,66 +11,28 @@
     </div>
     <!-- boby start -->
     <el-row :gutter="16">
-      <el-tabs v-model="activeName" @tab-click="handleClick" class="header-tabs" type="card">
-        <el-tab-pane label="基佬" name="first">
-          <span slot="label"><i class="el-icon-date"></i>基佬0</span>
-          <blog-classify></blog-classify>
-        </el-tab-pane>
-        <el-tab-pane label="基佬" name="second">
-          <span slot="label"><i class="el-icon-date"></i>基佬1</span>
-          <blog-classify></blog-classify>
-        </el-tab-pane>
-        <el-tab-pane label="基佬" name="third">
-          <span slot="label"><i class="el-icon-date"></i>基佬2</span>
-          <blog-classify></blog-classify>
-        </el-tab-pane>
-        <el-tab-pane label="基佬" name="fourth">
-          <span slot="label"><i class="el-icon-date"></i>基佬3</span>
-          <blog-classify></blog-classify>
+      <el-tabs v-model="activeName" @tab-click="handleClick" class="header-tabs">
+
+        <el-tab-pane v-for="(blog_category, index) in blog_categories" :key='index' :label="blog_category.name" :name="`${blog_category.id}`" >
+          <span slot="label"><i class="el-icon-date"></i>{{ blog_category.name }}
+          </span>
+          <blog-classify :selectCategoryId="blog_category.id"></blog-classify>
         </el-tab-pane>
       </el-tabs>
-      <!-- <el-col :xs="24" :sm="6" :md="8" :lg="13" :xl="15">
-        <div class="grid-content bg-purple-light">
-          <list :lists="articles" :isLoading="isShow"></list>
-        </div>
-      </el-col> -->
     </el-row>
 
     <el-row :gutter="16" class="container">
       <el-container class="el-container">
         <el-col :xs="24" :sm="20" :md="18" :lg="16">
           <el-main class="el-main">
-            <div class="main-container" v-for="(item, index) in posts" :key="index">
-              <div class="main-content">
-                <div class="main-portrait">
-                  <img src="../assets/images/11.jpg">
-                </div>
-                <div class="main-text">
-                  <h2><router-link :to="{ name: 'content', params: { id: item.id }}">{{ item.title }}</router-link></h2>
-                  <p>
-                    <span class="underline">{{ item.username }}</span>
-                    <span> • 最后由 </span>
-                    <span class="underline">{{ item.comment_user_last }} 回复</span>
-                    <span> • 发表时间：{{ postDate(item.timestamp) }}</span>
-                    <span> • 阅读量：{{ item.num_view }}</span>
-                  </p>
-                </div>
-              </div>
-              <div class="main-witch-number">
-                <span>{{ item.comment_count }}</span>
-              </div>
-            </div>
+            <post :posts="posts"> </post>
           </el-main>
         </el-col>
         <el-col :xs="0" :sm="4" :md="6">
           <el-aside width="300px" class="el-aside">
             <div>
-              <h2>hot title</h2>
-              <ul>
-                <li v-for="(item, index) in 10" :key="index">
-                  <span>溢出不隐藏溢出不隐藏溢出不隐藏</span>
-                </li>
-              </ul>
+              <h2>热门标签</h2>
+                <el-tag v-for="(tag, index) in tags" :key="index" size="mini" closable>{{ tag.content }}</el-tag>
             </div>
           </el-aside>
         </el-col>
@@ -82,14 +44,19 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import consts from "../constant/consts";
 import Banner from "./Banner.vue";
 import FooterBar from "./FooterBar.vue";
 import HeaderBar from "./HeaderBar.vue";
 import BlogClassify from "./BlogClassify.vue";
+import Post from './Post.vue'
 import List from "./List.vue";
 import * as types from '../store/mutation-types'
 import { mapGetters } from "vuex";
+import { Tag  } from 'element-ui';
+Vue.component(Tag.name, Tag);
+
 export default {
   name: "Home",
   data() {
@@ -97,7 +64,9 @@ export default {
       posts: [],
       isShow: true,
       isLogin: false,
-      activeName: 'first'
+      activeName: '1',
+      blog_categories: [],
+      tags: []
     };
   },
   computed: {
@@ -110,12 +79,27 @@ export default {
     List,
     HeaderBar,
     FooterBar,
-    BlogClassify
+    BlogClassify,
+    Post
   },
   methods: {
+    getTags() {
+      this.axios.get(consts.tags).then((res) => {
+        console.log('tags=>', res.data)
+        this.tags = res.data.tags
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    /**@function
+     * 格式化时间
+     */
     postDate(date) {
       return this.$moment(date).format('YYYY-MM-DD HH:mm:ss');
     },
+    /**@function
+     * 获取首页列表数据
+     */
     getPage() {
         const _this = this;
         this.axios.get(consts.home).then(response => {
@@ -142,6 +126,14 @@ export default {
             // console.log(error.config);
           });
     },
+    /**@function
+     * 获取博客分类栏目名称
+     */
+    getBlogCategories() {
+      this.axios.get(consts.blog_categories).then((res) => {
+        this.blog_categories = res.data.blog_categories
+      })
+    },
     publish() {
       this.$router.push("post");
     },
@@ -158,6 +150,10 @@ export default {
     }
 
     this.getPage();
+
+    this.getBlogCategories();
+
+    this.getTags();
 
     if (window.localStorage.getItem("token")) {
       this.isLogin = true;
@@ -183,58 +179,6 @@ export default {
     }
     .el-col-xs-24 {
       padding: 0;
-    }
-    .main-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 60px;
-      padding: 0.8% 1.8%;
-      background: #fff;
-      border-bottom: 1px solid #F0F0F0;
-      .main-content {
-        display: flex;
-        align-items: center;
-        flex: 1;
-        .main-portrait {
-          width: 48px;
-          height: 48px;
-          margin-right: 1%;
-          img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-          }
-        }
-        .main-text {
-          h2 {
-            margin-bottom: 2px;
-            font-size: 16px;
-            font-weight: 600;
-          }
-          p {
-            font-size: 14px;
-            color: #8f8d8b;
-            .underline {
-              text-decoration: underline;
-            }
-          }
-        }
-      }
-      .main-witch-number {
-        flex: 0 0 35px;
-        width: 35px;
-        text-align: center;
-        background: #CFD3E6;
-        border-radius: 30%;
-        span {
-          font-size: 14px;
-          color: #fff;
-        }
-        &:hover {
-          cursor: pointer;
-        }
-      }
     }
     .el-aside {
       box-sizing: border-box;

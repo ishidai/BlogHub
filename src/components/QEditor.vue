@@ -7,7 +7,7 @@
     @commitActicle="commitActicle"></header-bar>
       <div>
         <el-input v-model="inputTitle" placeholder="请输入标题"></el-input>
-        <el-select v-model="valueChannel" placeholder="请选择栏目">
+        <el-select v-model="valueChannel" placeholder="请选择栏目分类">
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -16,15 +16,38 @@
           </el-option>
         </el-select>
       </div>
-      <quill-editor v-model="content"
-                    class="quill-code"
-                    ref="myQuillEditor"
-                    :options="editorOption"
-                    @change="onEditorChange($event)"
-                    @blur="onEditorBlur($event)"
-                    @focus="onEditorFocus($event)"
-                    @ready="onEditorReady($event)">
-      </quill-editor>
+
+      <div>
+        <quill-editor v-model="content"
+                      class="quill-code"
+                      ref="myQuillEditor"
+                      :options="editorOption"
+                      @change="onEditorChange($event)"
+                      @blur="onEditorBlur($event)"
+                      @focus="onEditorFocus($event)"
+                      @ready="onEditorReady($event)">
+        </quill-editor>
+          <el-tag
+            :key="tag"
+            v-for="tag in dynamicTags"
+            closable
+            :disable-transitions="false"
+            @close="handleClose(tag)">
+            {{tag}}
+          </el-tag>
+          <el-input
+            class="input-new-tag"
+            v-if="inputVisible"
+            v-model="inputValue"
+            ref="saveTagInput"
+            size="small"
+            @keyup.enter.native="handleInputConfirm"
+            @blur="handleInputConfirm"
+          >
+          </el-input>
+          <el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
+      </div>
+
     </div>
 </template>
 
@@ -44,13 +67,14 @@ Vue.component(Select.name, Select);
 export default {
   data() {
     return {
+      dynamicTags: [],
+      inputVisible: false,
+      inputValue: '',
+      // 标题
       inputTitle: "",
-      options: [
-        {
-          value: "选项1",
-          label: "黄金糕1111"
-        }
-      ],
+      // 分类
+      options: [],
+      // 分类选择值
       valueChannel: "",
       content: "",
       editorOption: {
@@ -94,15 +118,34 @@ export default {
       console.log("editor change!", quill, html, text);
       this.content = html;
     },
+
+    handleClose(tag) {
+        this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
+      },
+
+    showInput() {
+      this.inputVisible = true;
+      this.$nextTick(_ => {
+        this.$refs.saveTagInput.$refs.input.focus();
+      });
+    },
+
+    handleInputConfirm() {
+      let inputValue = this.inputValue;
+      if (inputValue) {
+        this.dynamicTags.push(inputValue);
+      }
+      this.inputVisible = false;
+      this.inputValue = '';
+    },
     commitActicle() {
-      console.log("this.inputTitle", this.inputTitle);
-      console.log("this.valueChannel", this.valueChannel);
       if (this.inputTitle && this.valueChannel) {
         const _this = this;
-        this.axios
-          .post(consts.posts, {
+        this.axios.post(consts.posts, {
             title: this.inputTitle,
-            body: this.content
+            body: this.content,
+            tags: this.dynamicTags,
+            channelId: this.valueChannel
           })
           .then(function(response) {
             if (response.status === 201) {
@@ -136,14 +179,12 @@ export default {
   created() {
       const _this = this;
       this.axios.get(consts.categories).then((res) => {
-        console.log('====>', res.data.categorys)
-        res.data.categorys.forEach((item) => {
-          _this.options.concat({
+        res.data.categories.forEach((item) => {
+          _this.options.push({
               value:item.id,
               label:item.name
           })
         })
-        console.log('===options=>', _this.options)
       })
   },
   mounted() {

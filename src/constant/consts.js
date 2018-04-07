@@ -7,6 +7,9 @@ export default {
   blogs: '/api/v1.0/blogs/',
   show_blogs: '/api/v1.0/showblogs',
   signin: '/api/v1.0/signin',
-  categories: '/api/v1.0/categories',
+  categories: '/api/v1.0/categories/',
   collect: '/api/v1.0/collect',
+  blog_categories: '/api/v1.0/categories/blog/',
+  tags: '/api/v1.0/tags',
+  categories_list: '/api/v1.0/categories/list',
 }

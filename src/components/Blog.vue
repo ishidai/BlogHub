@@ -29,6 +29,18 @@
                 :maxlength="30">
         <template slot="prepend">Http://</template>
       </el-input>
+
+      <el-select v-model="categoryId" placeholder="请选择博客分类">
+      <el-option
+        v-for="category in blogCategories"
+        :key="category.value"
+        :label="category.label"
+        :value="category.value"
+        >
+      </el-option>
+      </el-select>
+
+
       <div style="margin: 20px 0;"></div>
       <el-input
         type="textarea"
@@ -58,6 +70,8 @@
   export default {
     data() {
       return {
+        categoryId:'',
+        blogCategories:[],
         blogName: '',
         blogDesc: '',
         imageUrl: '',
@@ -76,9 +90,26 @@
       HeaderBar,
       FooterBar
     },
+    created() {
+      this.getBlogCategories()
+    },
     methods: {
+      /**@function
+       * 获取博客分类展示
+       */
+      getBlogCategories() {
+        const _this = this;
+        this.axios.get(consts.blog_categories).then((res) => {
+          console.log('blog->', res.data.blog_categories)
+          res.data.blog_categories.forEach((item) => {
+            _this.blogCategories.push({
+                value:item.id,
+                label:item.name
+            })
+          })
+        })
+      },
       handleSuccess(res, file, fileList) {
-        console.log('res ======>', JSON.stringify(res))
         this.imageUrl = `${this.bucketHost}${res.key}`
       },
       checkUrl() {
@@ -154,12 +185,11 @@
           name: this.blogName,
           description: this.blogDesc,
           blog_url: this.blogUrl,
-          image_url: this.imageUrl
+          image_url: this.imageUrl,
+          category_id: this.categoryId
         }).then(function(response) {
-            if (response.status === 201) {
               _this.$router.push("/");
-            }
-          }).catch(function(error) {
+          }).catch(error => {
             console.log(error);
           });
       }
