@@ -6,8 +6,9 @@ import Content from '@/components/Content'
 import Login from '@/components/Login'
 import QEditor from '@/components/QEditor'
 import Blog from '@/components/Blog'
-import Programa from '@/components/programa'
+import Category from '@/components/Category'
 import SignIn from '@/components/SignIn'
+import ListCategory from '@/components/ListCategory'
 import * as types from '../store/mutation-types'
 
 Vue.use(Router)
@@ -34,9 +35,9 @@ const routes = [
       component: SignIn
     },
     {
-      path: '/programa',
-      name: 'programa',
-      component: Programa
+      path: '/categories',
+      name: 'categories',
+      component: Category
     },
     {
       path: '/blog',
@@ -53,6 +54,11 @@ const routes = [
         requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
       },
       component: QEditor
+    },
+    {
+      path: '/list/category/:category_id',
+      name: 'list_category',
+      component: ListCategory
     }
 ]
 
@@ -63,7 +69,7 @@ if (window.localStorage.getItem('token')) {
 }
 
 const router = new Router({
-  // mode: 'history',
+  mode: 'history',
   routes,
   // scroll to top
   scrollBehavior (to, from, savedPosition) {

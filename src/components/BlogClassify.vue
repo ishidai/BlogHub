@@ -29,6 +29,9 @@
 <script>
   import consts from "../constant/consts";
     export default {
+        props:{
+          selectCategoryId: Number
+        },
         data() {
             return {
               blogs: [],
@@ -39,8 +42,12 @@
         components: {
         },
         created() {
-          const user_id = this.$store.getters.getUserId;
-          this.axios.get(`${consts.show_blogs}/${user_id}`).then(response => {
+          let user_id = window.localStorage.getItem('user_id')
+          // 如果取出的user_id没有值说明登录失败或者还没登录就直接取默认值
+          if (!user_id) {
+            user_id = 0;
+          }
+          this.axios.get(`${consts.show_blogs}/${user_id}/${this.selectCategoryId}`).then(response => {
             this.blogs = response.data.blogs
           }).catch(err => {
             console.log(err);

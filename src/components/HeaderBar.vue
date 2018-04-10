@@ -4,17 +4,16 @@
     <div class="uk-navbar-left">
       <ul class="uk-navbar-nav">
         <li class="uk-active"><a href="/">博客咖</a></li>
-        <!-- <li>
-          <a href="#">Parent</a>
+        <li>
+          <a href="#">大爆炸💥</a>
           <div class="uk-navbar-dropdown">
             <ul class="uk-nav uk-navbar-dropdown-nav">
-              <li class="uk-active"><a href="/">Active</a></li>
-              <li><a href="#">Item</a></li>
-              <li><a href="#">Item</a></li>
+              <li v-for="(c, i) in categories" :key="i"><a href="#">{{ c.name }}</a></li>
             </ul>
           </div>
         </li>
-        <li><a href="/">Item</a></li> -->
+        <li> <router-link to="categories">节点</router-link></li>
+
       </ul>
 
     </div>
@@ -54,7 +53,8 @@ export default {
   },
   data() {
     return {
-      user: {}
+      user: {},
+      categories:[]
     };
   },
   computed: {},
@@ -80,6 +80,10 @@ export default {
     }
   },
   created() {
+    const _this = this;
+    this.axios.get(constans.categories).then((res) => {
+      _this.categories = res.data.categories
+    })
   },
   mounted() {
     const _this = this;
