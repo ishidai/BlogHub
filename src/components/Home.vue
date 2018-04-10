@@ -1,12 +1,7 @@
 <template>
   <div id="home">
-    <!--<list :lists="articles" :isLoading="isShow"></list>-->
-    <div class="uk-section-primary uk-preserve-color">
-    <!--uk-sticky="animation: uk-animation-slide-top; -->
-    <!--sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; -->
-    <!--cls-inactive: uk-navbar-transparent uk-light; top: 200"-->
-      <header-bar
-        :isLogin="isLogin"></header-bar>
+    <div class="">
+      <my-header></my-header>
       <banner></banner>
     </div>
     <!-- boby start -->
@@ -85,7 +80,8 @@
 import consts from "../constant/consts";
 import Banner from "./Banner.vue";
 import FooterBar from "./FooterBar.vue";
-import HeaderBar from "./HeaderBar.vue";
+import MyHeader from "./MyHeader.vue";
+// import HeaderBar from "./HeaderBar.vue";
 import BlogClassify from "./BlogClassify.vue";
 import List from "./List.vue";
 import * as types from '../store/mutation-types'
@@ -108,9 +104,10 @@ export default {
   components: {
     Banner,
     List,
-    HeaderBar,
+    // HeaderBar,
     FooterBar,
-    BlogClassify
+    BlogClassify,
+    MyHeader
   },
   methods: {
     postDate(date) {

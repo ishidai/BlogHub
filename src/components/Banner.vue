@@ -1,47 +1,25 @@
 <template>
-  <div class="uk-position-relative uk-visible-toggle uk-light" uk-slideshow="animation: push; max-height: 250">
-
-    <ul class="uk-slideshow-items">
-      <li>
-        <div class="uk-position-cover" uk-slideshow-parallax="scale: 1.2,1.2,1">
-          <img src="../style/images/banner-01.jpg" alt="" uk-cover>
-        </div>
-        <div class="uk-position-cover" uk-slideshow-parallax="opacity: 0,0,0.2; backgroundColor: #000,#000"></div>
-        <div class="uk-position-center uk-position-medium uk-text-center">
-          <div uk-slideshow-parallax="scale: 1,1,0.8">
-            <h2 uk-slideshow-parallax="x: 200,0,0">bokeka.com</h2>
-            <p uk-slideshow-parallax="x: 400,0,0;">博客咖-国内博客聚合导航站</p>
+  <div class="banner">
+    <el-carousel trigger="click" height="300px">
+      <el-carousel-item>
+        <div class="carousel">
+          <img src="../style/images/banner-01.jpg">
+          <div class="carousel-text">
+            <h3>博客咖-国内博客聚合导航站</h3>
+            <p>bokeka.com</p>
           </div>
         </div>
-      </li>
-      <li>
-        <div class="uk-position-cover" uk-slideshow-parallax="scale: 1.2,1.2,1">
-          <img src="../style/images/banner-02.jpg" alt="" uk-cover>
-        </div>
-        <div class="uk-position-cover" uk-slideshow-parallax="opacity: 0,0,0.2; backgroundColor: #000,#000"></div>
-        <div class="uk-position-center uk-position-medium uk-text-center">
-          <div uk-slideshow-parallax="scale: 1,1,0.8">
-            <h2 uk-slideshow-parallax="x: 200,0,0">bokeka.com</h2>
-            <p uk-slideshow-parallax="x: 400,0,0;">博客咖-国内博客聚合导航站</p>
+      </el-carousel-item>
+      <el-carousel-item>
+        <div class="carousel">
+          <img src="../style/images/banner-02.jpg">
+          <div class="carousel-text">
+            <h3>博客咖-国内博客聚合导航站</h3>
+            <p>bokeka.com</p>
           </div>
         </div>
-      </li>
-      <li>
-        <div class="uk-position-cover" uk-slideshow-parallax="scale: 1.2,1.2,1">
-          <img src="../style/images/banner-02.jpg" alt="" uk-cover>
-        </div>
-        <div class="uk-position-cover" uk-slideshow-parallax="opacity: 0,0,0.2; backgroundColor: #000,#000"></div>
-        <div class="uk-position-center uk-position-medium uk-text-center">
-          <div uk-slideshow-parallax="scale: 1,1,0.8">
-            <h2 uk-slideshow-parallax="x: 200,0,0">bokeka.com</h2>
-            <p uk-slideshow-parallax="x: 400,0,0;">博客咖-国内博客聚合导航站</p>
-          </div>
-        </div>
-      </li>
-    </ul>
-
-    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
-    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+      </el-carousel-item>
+    </el-carousel>
   </div>
 </template>
 
@@ -61,5 +39,32 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.banner {
+  font-size: .12rem;
+  .carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .carousel-text {
+      width: 80%;
+      margin: 0 auto;
+      position: relative;
+      padding-top: 10%;      
+      font-size: .12rem;
+      text-align: center;
+      z-index: 1000;
+      h3, p {
+        color: #fff;
+        font-size: .32rem;
+      }
+    }
+  }
+}
 </style>
