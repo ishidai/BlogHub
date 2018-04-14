@@ -57,7 +57,8 @@ export default {
       categories:[]
     };
   },
-  computed: {},
+  computed: {
+  },
   components: {},
   methods: {
     login() {
