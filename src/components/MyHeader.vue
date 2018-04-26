@@ -20,15 +20,31 @@
             placeholder="搜索">
           </el-input>
         </div>
-        <div class="login-button" v-if="isLoginOnline !== true">
+        <div class="login-button" v-if="isLoginOnline !== false">
             <el-button size="mini" icon="el-icon-document" @click="publish"></el-button>          
             <el-button size="mini" @click="reg">注册</el-button>
             <el-button size="mini" @click="login">登录</el-button>
-            <el-button size="mini">GitHub登录</el-button>
         </div>
-        <div class="login-button" v-else>
-          <el-button size="mini">{{ user.username }}</el-button>
-        </div>
+        <el-dropdown class="login-button" trigger="click" v-else>
+          <el-button class="el-dropdown-link" size="mini">
+            {{ user.username }}<i class="el-icon-caret-bottom el-icon--right"></i>
+          </el-button>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item class="clearfix">
+              我的主页
+            </el-dropdown-item>
+            <el-dropdown-item class="clearfix">
+              消息
+              <el-badge class="mark" :value="6" />
+            </el-dropdown-item>
+            <el-dropdown-item class="clearfix">
+              设置
+            </el-dropdown-item>
+            <el-dropdown-item class="clearfix">
+              退出
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
       </div>
     </div>
   </div>
