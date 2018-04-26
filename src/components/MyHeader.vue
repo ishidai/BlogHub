@@ -20,7 +20,7 @@
             placeholder="搜索">
           </el-input>
         </div>
-        <div class="login-button" v-if="isLoginOnline !== false">
+        <div class="login-button" v-if="isLoginOnline !== true">
             <el-button size="mini" icon="el-icon-document" @click="publish"></el-button>          
             <el-button size="mini" @click="reg">注册</el-button>
             <el-button size="mini" @click="login">登录</el-button>
