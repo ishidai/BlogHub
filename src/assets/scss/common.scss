@@ -1,0 +1,15 @@
+a{
+  transition: all .3s ease;
+  &.active{
+    color: $theme;
+  }
+  &:hover{
+    color: $theme;
+    font-size: .18rem;
+  }
+}
+
+.inline-block {
+  display: inline-block;
+  margin: 0 !important;
+}

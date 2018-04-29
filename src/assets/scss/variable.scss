@@ -11,6 +11,7 @@ $lighter-text: #999;
 $background: #f4f8fb;
 $dark-background: #2c3039;
 $blur-background: hsla(0, 0%, 0%, 0.25);
+$white-background: #fff;
 
 $border: #e2e2e2;
 
@@ -34,3 +35,7 @@ $font-size-large-x: 0.22rem;
 
 $disabled: #ccc;
 $font-family: 'Segoe UI', 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', Arial, sans-serif;
+
+$md: 'max-width: 768px';
+$sm: 'max-width: 532px';
+$vsm: 'max-width: 414px';
