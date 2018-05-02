@@ -15,9 +15,34 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-favorite:before { content: "\e614"; }
+[class^="el-icon-third"], 
+[class*=" el-icon-third"] {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-.icon-dianzan:before { content: "\e60a"; }
+.el-icon-third-other:before { content: "\e61a"; }
 
-.icon-zan1:before { content: "\e600"; }
+.el-icon-third-android:before { content: "\e669"; }
+
+.el-icon-third-yun:before { content: "\e67b"; }
+
+.el-icon-third-ios:before { content: "\e676"; }
+
+.el-icon-third-sql:before { content: "\e634"; }
+
+.el-icon-third-zhineng:before { content: "\e612"; }
+
+.el-icon-third-develops:before { content: "\e63d"; }
+
+.el-icon-third-qa:before { content: "\e633"; }
+
+.el-icon-third-kaifa:before { content: "\e733"; }
+
+.el-icon-third-frontend:before { content: "\e607"; }
+
+.el-icon-third-backend:before { content: "\e67e"; }
 

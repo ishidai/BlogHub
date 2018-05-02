@@ -7,9 +7,9 @@
     <!-- boby start -->
     <el-row :gutter="16">
       <el-tabs v-model="activeName" @tab-click="handleClick" class="header-tabs">
-
         <el-tab-pane v-for="(blog_category, index) in blog_categories" :key='index' :label="blog_category.name" :name="`${blog_category.id}`" >
-          <span slot="label"><i class="el-icon-date"></i>{{ blog_category.name }}
+          <span slot="label">
+            <i class="icon el-icon-third-other"></i>{{ blog_category.name }}
           </span>
           <blog-classify :selectCategoryId="blog_category.id"></blog-classify>
         </el-tab-pane>

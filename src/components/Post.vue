@@ -15,7 +15,7 @@
             <span> • 阅读量：{{ item.num_view }}</span>
             </p>
             <p>
-            <span><el-tag v-for="(tag,i) in item.tags" :key="i">{{ tag }}</el-tag> &nbsp;</span>
+            <span><el-tag class="tag" v-for="(tag,i) in item.tags" :key="i">{{ tag }}</el-tag> &nbsp;</span>
             </p>
         </div>
         </div>
@@ -28,27 +28,28 @@
 
 <script>
 export default {
-    props: {
-        posts: Array
-    },
-    data() {
-        return {
-        }
-    },
-    methods: {
-        postDate(date) {
-            return this.$moment(date).format('YYYY-MM-DD HH:mm:ss');
-        }
-    },
-    created() {
-        console.log('aaaaa===>', this.posts)
+  props: {
+      posts: Array
+  },
+  data() {
+    return {
     }
-  
+  },
+  methods: {
+    postDate(date) {
+        return this.$moment(date).format('YYYY-MM-DD HH:mm:ss');
+    }
+  },
+  created() {
+      console.log('aaaaa===>', this.posts)
+  }
+
 }
 </script>
 
 <style scoped lang="scss">
     .main-container {
+      font-size: .14rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -81,6 +82,9 @@ export default {
             color: #8f8d8b;
             .underline {
               text-decoration: underline;
+            }
+            .tag{
+              margin-right: 3px;
             }
           }
         }

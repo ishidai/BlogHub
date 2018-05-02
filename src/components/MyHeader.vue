@@ -5,9 +5,9 @@
         <a class="logo" href="/"><img src="../assets/logo.jpg" alt="博客咖"></a>
         <div class="menu">
           <ul>
-            <li><a class="active" href="/" @click="switchTab">首页</a></li>
-            <li><a href="" @click="switchTab">书单</a></li>
-            <li><a href="" @click="switchTab">标签</a></li>
+            <li><a class="active" href="/">首页</a></li>
+            <li><a href="">书单</a></li>
+            <li><a href="">标签</a></li>
           </ul>
         </div>
       </div>
@@ -115,11 +115,20 @@ export default {
 
 <style scoped lang="scss">
 @import "~scss/variable";
+.shadow{
+  box-shadow: 0 0 15px rgba(0,0,0,.25)
+}
 .header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
   width: 100%;
   padding: .1rem 0;
   background-color: #fff;
   overflow: auto;
+  transition: all .3s ease;
   .container{
     max-width: 1024px;
     padding: 0 .2rem;

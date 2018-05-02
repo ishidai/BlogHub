@@ -1,7 +1,6 @@
 <template>
   <div>
-    <header-bar
-      :isLogin="true"></header-bar>
+    <header-bar :isLogin="true"></header-bar>
     <div style="width: 50%;margin: 20px auto;">
       <el-upload
         class="avatar-uploader"

@@ -5,11 +5,15 @@ a{
   }
   &:hover{
     color: $theme;
-    font-size: .18rem;
   }
 }
 
 .inline-block {
   display: inline-block;
   margin: 0 !important;
+}
+
+.icon {
+  vertical-align: middle;
+  margin: 0 .05rem;
 }
