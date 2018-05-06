@@ -1,15 +1,15 @@
 <template>
-  <div class="uk-section uk-section-secondary  uk-light">
+  <div class="uk-section">
     <div class="uk-container">
 
       <h3>博客咖-博客聚合导航站</h3>
 
-      <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
+      <div>
         <div>
-          <p><a style="" href="https://toit.me">联系我们</a></p>
+          <p><a href="https://www.bokake.com">联系我们</a></p>
         </div>
         <div>
-          <p><a style="" href="https://toit.me">关于我们</a></p>
+          <p><a href="https://www.bokeka.com">关于我们</a></p>
         </div>
         <div>
           <p>&copy &nbsp2018 &nbspBokeka.com&nbsp版权所有</p>
