@@ -6,7 +6,6 @@
           <img v-bind:src="item.img" v-if="item.img">
           <img src="../assets/images/11.jpg" v-else>
           <span><a v-on:click="clickCount(item.id)" target="_blank" :href="`http://${item.url}`">{{ item.name }}</a></span>
-          <!--<span><router-link v-on:click.native="clickCount" to="`http://${item.url}`">{{ item.name }}</router-link></span>-->
         </div>
         <div class="content-text">
           {{ item.description }}
@@ -78,28 +77,28 @@
 .bg-purple {
   padding: 0;
   background: #fff;
-  font-size: .12rem;
+  font-size: 1.2rem;
   @media screen and ($sm) {
     border-bottom: 1px solid #F0F0F0; 
   }
   .content-bg {
     img {
-      width: .60rem;
-      height: .60rem;
+      width: 6rem;
+      height: 6rem;
       border-radius: 5px;
     }
     span {
-      margin-left: .1rem;
+      margin-left: 1rem;
       font-weight: bold;
     }
   }
   .content-text {
-    margin-top: .10rem;
+    margin-top: 1rem;
   }
   .content-footer {
     display: flex;
     justify-content: space-between;
-    margin: .05rem .05rem .05rem 0;
+    margin: 1rem 1rem 1rem 0;
     font-size: 10px;
   }
 }

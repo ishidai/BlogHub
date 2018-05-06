@@ -41,7 +41,7 @@
             <el-dropdown-item class="clearfix">
               设置
             </el-dropdown-item>
-            <el-dropdown-item class="clearfix">
+            <el-dropdown-item @click="logout()" class="clearfix">
               退出
             </el-dropdown-item>
           </el-dropdown-menu>
@@ -125,15 +125,15 @@ export default {
   right: 0;
   z-index: 3;
   width: 100%;
-  padding: .1rem 0;
+  padding: 1rem 0;
   background-color: #fff;
   overflow: auto;
   transition: all .3s ease;
   .container{
     max-width: 1024px;
-    padding: 0 .2rem;
+    padding: 0 2rem;
     margin: 0 auto;
-    font-size: .15rem;
+    font-size: 1.5rem;
     .button{
       display: inline-block;
     }
@@ -142,7 +142,7 @@ export default {
       .logo{
         vertical-align: text-top;
         img{
-          height: .15rem;
+          height: 1.5rem;
         }
       }
       .menu{
@@ -150,10 +150,10 @@ export default {
         vertical-align: text-top;
         li{
           display: inline-block;
-          margin-left: .3rem;
+          margin-left: 3rem;
           transition: all .3s ease;
           @media screen and ($md) {
-            margin-left: .2rem;
+            margin-left: 2rem;
           }
           @media screen and ($sm) {
             display: none;
@@ -171,8 +171,8 @@ export default {
         }
       }
       .profile-pic{
-        width: .12rem;
-        height: .12rem;
+        width: 1.2rem;
+        height: 1.2rem;
       }
     }
   }

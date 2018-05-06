@@ -1,6 +1,6 @@
 <template>
   <div style="background:#fff;">
-    <HeaderBar isLogin="isLogin"></HeaderBar>
+    <Header isLogin="isLogin"></Header>
     <div class="main">
       <div class="container">
         <!-- End 博客title and about -->
@@ -57,14 +57,14 @@
         <!-- End 评论区域 -->
       </div>
     </div>
-    <footer-bar></footer-bar>
+    <Footer></Footer>
   </div>
 </template>
 <script>
-import HeaderBar from "./HeaderBar.vue";
-import FooterBar from "./FooterBar.vue";
-import consts from "../constant/consts";
 import Vue from "vue";
+import Header from "../components/Header.vue";
+import Footer from "../components/Footer.vue";
+import consts from "../constant/consts";
 import { Input } from "element-ui";
 Vue.component(Input.name, Input);
 
@@ -86,8 +86,8 @@ export default {
     }
   },
   components: {
-    HeaderBar,
-    FooterBar
+    Header,
+    Footer
   },
   created () {
     const _this = this;

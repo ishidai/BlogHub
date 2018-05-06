@@ -1,10 +1,10 @@
 <template>
   <!-- bidirectional data binding（双向数据绑定） -->
   <div>
-    <header-bar
+    <Header
     :isPublish="true"
     :isLogin="true"
-    @commitActicle="commitActicle"></header-bar>
+    @commitActicle="commitActicle"></Header>
       <div>
         <el-input v-model="inputTitle" placeholder="请输入标题"></el-input>
         <el-select v-model="valueChannel" placeholder="请选择栏目分类">
@@ -55,7 +55,7 @@
 // you can also register quill modules in the component
 import Quill from "quill";
 import consts from "../constant/consts";
-import HeaderBar from "./HeaderBar.vue";
+import Header from "../components/Header.vue";
 import Vue from "vue";
 import { Message } from "element-ui";
 import { Input } from "element-ui";
@@ -191,7 +191,7 @@ export default {
     console.log("this is current quill instance object", this.editor);
   },
   components: {
-    HeaderBar
+    Header
   }
 };
 </script>

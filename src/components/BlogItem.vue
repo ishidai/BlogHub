@@ -1,29 +1,27 @@
 <template>
-<div>
-  <div class="main-container" v-for="(item, index) in posts" :key="index">
+  <div>
+    <div class="main-container" v-for="(item, index) in posts" :key="index">
         <div class="main-content">
-        <div class="main-portrait">
-            <img src="../assets/images/11.jpg">
-        </div>
-        <div class="main-text">
-            <h2><router-link :to="{ name: 'content', params: { id: item.id }}">{{ item.title }}</router-link></h2>
-            <p>
-            <span class="underline">{{ item.username }}</span>
-            <span> • 最后由 </span>
-            <span class="underline">{{ item.comment_user_last }} 回复</span>
-            <span> • 发表时间：{{ postDate(item.timestamp) }}</span>
-            <span> • 阅读量：{{ item.num_view }}</span>
-            </p>
-            <p>
-            <span><el-tag class="tag" v-for="(tag,i) in item.tags" :key="i">{{ tag }}</el-tag> &nbsp;</span>
-            </p>
-        </div>
+          <div class="main-portrait">
+              <img src="../assets/images/11.jpg">
+          </div>
+          <div class="main-text">
+              <h2><router-link :to="{ name: 'content', params: { id: item.id }}">{{ item.title }}</router-link></h2>
+              <p>
+                <span class="underline">{{ item.username }}</span>
+                <span> • 最后由 </span>
+                <span class="underline">{{ item.comment_user_last }} 回复</span>
+                <span> • 发表时间：{{ postDate(item.timestamp) }}</span>
+                <span> • 阅读量：{{ item.num_view }}</span>
+              </p>
+              <el-tag class="tag" v-for="(tag,i) in item.tags" :key="i">{{ tag }}</el-tag>
+          </div>
         </div>
         <div class="main-witch-number">
-        <span>{{ item.comment_count }}</span>
+          <span>{{ item.comment_count }}</span>
         </div>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
@@ -37,19 +35,18 @@ export default {
   },
   methods: {
     postDate(date) {
-        return this.$moment(date).format('YYYY-MM-DD HH:mm:ss');
+      return this.$moment(date).format('YYYY-MM-DD HH:mm:ss');
     }
   },
   created() {
-      console.log('aaaaa===>', this.posts)
+      console.log('posts===>', this.posts)
   }
-
 }
 </script>
 
 <style scoped lang="scss">
     .main-container {
-      font-size: .14rem;
+      font-size: 1.4rem;
       display: flex;
       align-items: center;
       justify-content: space-between;

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <header-bar></header-bar>
+        <Header></Header>
         <div class="container">
             <div class="category">
                 <span class="category_title">
@@ -8,14 +8,14 @@
                 </span>
             </div>
         </div>
-        <post :posts="posts"></post>
+        <BlogItem :posts="posts"></BlogItem>
     </div>
   
 </template>
 
 <script>
-import HeaderBar from "./HeaderBar.vue";
-import Post from './Post.vue';
+import Header from "../components/Header.vue";
+import BlogItem from '../components/BlogItem.vue';
 import consts from "../constant/consts";
 export default {
     data() {
@@ -24,8 +24,8 @@ export default {
         }
     },
     components: {
-        HeaderBar,
-        Post
+        Header,
+        BlogItem
     },
     created() {
         this.axios.get(`${consts.categories}${this.$route.params.category_id}`).then(res => {
