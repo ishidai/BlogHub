@@ -1,0 +1,19 @@
+a{
+  transition: all .3s ease;
+  &.active{
+    color: $theme;
+  }
+  &:hover{
+    color: $theme;
+  }
+}
+
+.inline-block {
+  display: inline-block;
+  margin: 0 !important;
+}
+
+.icon {
+  vertical-align: text-top;
+  margin: 0 .5rem;
+}

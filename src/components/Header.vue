@@ -2,32 +2,33 @@
   <div class="header">
     <div class="container">
       <div class="header-left">
-        <div class="logo">博客咖</div>
-        <div class="list">
+        <a class="logo" href="/"><img src="../assets/logo.jpg" alt="博客咖"></a>
+        <div class="menu">
           <ul>
-            <li class="hover" href="/">首页</li>
-            <li>书单</li>
-            <li>标签</li>
+            <li><a class="active" href="/">首页</a></li>
+            <li><a href="">书单</a></li>
+            <li><a href="">标签</a></li>
           </ul>
         </div>
       </div>
       <div class="header-right">
-        <div class="search">
-          <el-input
-            v-model="search"
-            size="mini"
-            suffix-icon="el-icon-search"
-            placeholder="搜索">
-          </el-input>
+        <el-input
+          class="search inline-block"
+          v-model="search"
+          size="mini"
+          suffix-icon="el-icon-search"
+          placeholder="搜索">
+        </el-input>
+        <el-button class="inline-block" size="mini" icon="el-icon-document" @click="publish"></el-button>
+        <div class="inline-block" v-if="isLoginOnline !== true">            
+            <el-button class="inline-block" size="mini" @click="reg">注册</el-button>
+            <el-button class="inline-block" size="mini" @click="login">登录</el-button>
         </div>
-        <div class="login-button" v-if="isLoginOnline !== true">
-            <el-button size="mini" icon="el-icon-document" @click="publish"></el-button>          
-            <el-button size="mini" @click="reg">注册</el-button>
-            <el-button size="mini" @click="login">登录</el-button>
-        </div>
-        <el-dropdown class="login-button" trigger="click" v-else>
+        <el-dropdown trigger="click" v-else>
           <el-button class="el-dropdown-link" size="mini">
-            {{ user.username }}<i class="el-icon-caret-bottom el-icon--right"></i>
+            <img class="profile-pic" src="../assets/images/11.jpg" alt="头像">
+            {{ user.username }}
+            <i class="el-icon-caret-bottom el-icon--right"></i>
           </el-button>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item class="clearfix">
@@ -40,7 +41,7 @@
             <el-dropdown-item class="clearfix">
               设置
             </el-dropdown-item>
-            <el-dropdown-item class="clearfix">
+            <el-dropdown-item @click="logout()" class="clearfix">
               退出
             </el-dropdown-item>
           </el-dropdown-menu>
@@ -114,74 +115,66 @@ export default {
 
 <style scoped lang="scss">
 @import "~scss/variable";
-.header {
-  height: .5rem;
-  line-height: .5rem;
-  background: #fff;
+.shadow{
+  box-shadow: 0 0 15px rgba(0,0,0,.25)
+}
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
   width: 100%;
-  font-size: .12px;
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    .header-left {
-      display: flex;
-      align-items: center;
-      font-size: .15rem;
-      height: 100%;
-      cursor: pointer;      
-      ul {
-        height: 100%;
-        margin-left: .3rem;       
-        text-align: center;
-        color: #87969d;
-        .hover {
-          color: $theme;
-        }
-        li {
-          display: inline-block;
-          width: .6rem;
-        }
-      }
-      .logo {
-        width: .5rem;
-        text-align: center;
-        height: 100%;
-        font-size: .16rem;
-      }
-      .list {
-
-      }
-    }
-    .header-right {
-      display: flex;
-      align-items: center;
-      height: 100%;
-      font-size: .15rem;
-      text-align: right;
-      .login-button {
-        height: 100%;
-        margin-left: .3rem;
-      }
-    }
-  }
-}
-@media screen and (min-width: 1000px) {
-  .container {
-    width: 10rem;
+  padding: 1rem 0;
+  background-color: #fff;
+  overflow: auto;
+  transition: all .3s ease;
+  .container{
+    max-width: 1024px;
+    padding: 0 2rem;
     margin: 0 auto;
-    border-bottom: 1px solid #eceef1;
-  }
-}
-@media screen and (max-width: 640px) {
-  .container {
-    padding: 0 .1rem;
-    .list, .search {
-      display: none;
+    font-size: 1.5rem;
+    .button{
+      display: inline-block;
+    }
+    .header-left{
+      float: left;
+      .logo{
+        vertical-align: text-top;
+        img{
+          height: 1.5rem;
+        }
+      }
+      .menu{
+        display: inline-block;
+        vertical-align: text-top;
+        li{
+          display: inline-block;
+          margin-left: 3rem;
+          transition: all .3s ease;
+          @media screen and ($md) {
+            margin-left: 2rem;
+          }
+          @media screen and ($sm) {
+            display: none;
+          }
+        }
+      }
+    }
+    .header-right{
+      float: right;
+      text-align: right;
+      .search{
+        width: 42%;
+        @media screen and ($md) {
+         display: none;
+        }
+      }
+      .profile-pic{
+        width: 1.2rem;
+        height: 1.2rem;
+      }
     }
   }
 }
-
-
 </style>

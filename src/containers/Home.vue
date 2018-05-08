@@ -1,17 +1,17 @@
 <template>
   <div id="home">
     <div class="">
-      <my-header></my-header>
-      <banner></banner>
+      <Header></Header>
+      <Banner></Banner>
     </div>
     <!-- boby start -->
-    <el-row :gutter="16">
+    <el-row :gutter="16" class="container">
       <el-tabs v-model="activeName" @tab-click="handleClick" class="header-tabs">
-
         <el-tab-pane v-for="(blog_category, index) in blog_categories" :key='index' :label="blog_category.name" :name="`${blog_category.id}`" >
-          <span slot="label"><i class="el-icon-date"></i>{{ blog_category.name }}
+          <span slot="label">
+            <i :class=" 'icon el-icon-third-' + blog_category.pic"></i>{{ blog_category.name }}
           </span>
-          <blog-classify :selectCategoryId="blog_category.id"></blog-classify>
+          <classify :selectCategoryId="blog_category.id"></classify>
         </el-tab-pane>
       </el-tabs>
     </el-row>
@@ -20,34 +20,33 @@
       <el-container class="el-container">
         <el-col :xs="24" :sm="20" :md="18" :lg="16">
           <el-main class="el-main">
-            <post :posts="posts"> </post>
+            <BlogItem :posts="posts"> </BlogItem>
           </el-main>
         </el-col>
         <el-col :xs="0" :sm="4" :md="6">
-          <el-aside width="300px" class="el-aside">
+          <el-aside class="el-aside">
             <div>
               <h2>热门标签</h2>
-                <el-tag v-for="(tag, index) in tags" :key="index" size="mini" closable>{{ tag.content }}</el-tag>
+              <el-tag class="tag" v-for="(tag, index) in tags" :key="index" size="mini" closable>{{ tag.content }}</el-tag>
             </div>
           </el-aside>
         </el-col>
       </el-container>
     </el-row>
 
-    <footer-bar></footer-bar>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import Vue from 'vue';
 import consts from "../constant/consts";
-import Banner from "./Banner.vue";
-import FooterBar from "./FooterBar.vue";
-import MyHeader from "./MyHeader.vue";
-// import HeaderBar from "./HeaderBar.vue";
-import BlogClassify from "./BlogClassify.vue";
-import Post from './Post.vue'
-import List from "./List.vue";
+import Banner from "../components/Banner.vue";
+import Footer from "../components/Footer.vue";
+import Header from "../components/Header.vue";
+import Classify from "../components/Classify.vue";
+import BlogItem from '../components/BlogItem.vue'
+import List from "../components/List.vue";
 import * as types from '../store/mutation-types'
 import { mapGetters } from "vuex";
 import { Tag  } from 'element-ui';
@@ -73,11 +72,10 @@ export default {
   components: {
     Banner,
     List,
-    // HeaderBar,
-    FooterBar,
-    BlogClassify,
-    MyHeader,
-    Post
+    Footer,
+    Classify,
+    Header,
+    BlogItem
   },
   methods: {
     getTags() {
@@ -166,6 +164,7 @@ export default {
   background: #f2f2f2;
   .container {
     margin-top: 1%;
+    font-size: 2.3rem;
   }
   .el-container {
     box-sizing: border-box;
@@ -180,12 +179,16 @@ export default {
     .el-aside {
       box-sizing: border-box;
       background: #fff;
+      padding-bottom: 8px;
       h2 {
         font-size: 20px;
         line-height: 40px;
         text-align: center;
         color: #666;
         background: #f3fbff;
+      }
+      .tag{
+        margin-left: 6px;
       }
       ul {
         box-sizing: border-box;

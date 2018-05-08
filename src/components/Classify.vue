@@ -6,7 +6,6 @@
           <img v-bind:src="item.img" v-if="item.img">
           <img src="../assets/images/11.jpg" v-else>
           <span><a v-on:click="clickCount(item.id)" target="_blank" :href="`http://${item.url}`">{{ item.name }}</a></span>
-          <!--<span><router-link v-on:click.native="clickCount" to="`http://${item.url}`">{{ item.name }}</router-link></span>-->
         </div>
         <div class="content-text">
           {{ item.description }}
@@ -16,10 +15,10 @@
             <i class="el-icon-view"></i>
             <span>{{ item.num_view }}</span>
           </div>
-            <div class="right-footer" @click="collectBlog(item.id, index)">
-              <a><i :class="item.is_collect ? 'el-icon-star-on' : 'el-icon-star-off'"></i></a>
-              <span>{{ item.collect_num }}</span>
-            </div>
+          <div class="right-footer" @click="collectBlog(item.id, index)">
+            <a><i :class="item.is_collect ? 'el-icon-star-on' : 'el-icon-star-off'"></i></a>
+            <span>{{ item.collect_num }}</span>
+          </div>
         </div>
       </div>
     </el-col>
@@ -74,37 +73,36 @@
 </script>
 
 <style lang="scss" scoped>
+@import "~scss/variable";
 .bg-purple {
-  padding: 0 3%;
+  padding: 0;
   background: #fff;
+  font-size: 1.2rem;
+  @media screen and ($sm) {
+    border-bottom: 1px solid #F0F0F0; 
+  }
   .content-bg {
-    margin: 5%;
-    width: 100%;
     img {
-      width: 30px;
-      height: 30px;
+      width: 6rem;
+      height: 6rem;
+      border-radius: 5px;
     }
     span {
-      margin-left: 8px;
-      font-size: 12px;
+      margin-left: 1rem;
       font-weight: bold;
     }
   }
   .content-text {
-    margin: 5%;
-    text-align: left;
-    font-size: 12px;
+    margin-top: 1rem;
   }
   .content-footer {
     display: flex;
     justify-content: space-between;
-    margin: 5% 5% 0;
+    margin: 1rem 1rem 1rem 0;
     font-size: 10px;
   }
 }
 .grid-content {
-  margin-bottom: 5%;
-  border-radius: 10px;
   min-height: 100px;
   padding: 6px;
   transition: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -112,4 +110,5 @@
     transform: scale(1.1);
   }
 }
+
 </style>

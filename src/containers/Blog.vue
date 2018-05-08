@@ -1,7 +1,6 @@
 <template>
   <div>
-    <header-bar
-      :isLogin="true"></header-bar>
+    <header :isLogin="true"></header>
     <div style="width: 50%;margin: 20px auto;">
       <el-upload
         class="avatar-uploader"
@@ -52,13 +51,13 @@
       <div style="margin: 20px 0;"></div>
       <el-button type="primary" @click="onSubmit" >提交</el-button>
     </div>
-    <footer-bar></footer-bar>
+    <Footer></Footer>
   </div>
 </template>
 <script>
   import consts from "../constant/consts";
-  import HeaderBar from "./HeaderBar.vue";
-  import FooterBar from "./FooterBar.vue";
+  import Header from "../components/Header.vue";
+  import Footer from "../components/Footer.vue";
   import * as types from '../store/mutation-types'
   import Vue from 'vue';
   import { Input } from 'element-ui';
@@ -87,8 +86,8 @@
     computed: {
     },
     components: {
-      HeaderBar,
-      FooterBar
+      Header,
+      Footer
     },
     created() {
       this.getBlogCategories()

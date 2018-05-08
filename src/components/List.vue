@@ -2,7 +2,7 @@
   <div class="main-content-body">
     <div v-if="!isLoading" >
       <div class="content-list" v-for="(item, index) in lists" :key="index">
-        <div class="content-left"><img src="../style/images/avatar.jpg" width="50px" height="50px" class="img-avatar"/></div>
+        <div class="content-left"><img src="../assets/images/avatar.jpg" width="50px" height="50px" class="img-avatar"/></div>
         <div class="content-body">
           <span class="uk-text-muted uk-text-nowrap">{{ item.title }}</span><br/>
           <span class="uk-text-muted">by <a class="uk-text-primary">{{ item.username }}</a>

@@ -1,21 +1,12 @@
 <template>
   <div class="banner">
-    <el-carousel trigger="click" height="300px">
-      <el-carousel-item>
+    <el-carousel trigger="click" class="slider-container">
+      <el-carousel-item  v-for="banner in bannerData" :key="banner.index">
         <div class="carousel">
-          <img src="../style/images/banner-01.jpg">
+          <img :src="banner.pic">
           <div class="carousel-text">
-            <h3>博客咖-国内博客聚合导航站</h3>
-            <p>bokeka.com</p>
-          </div>
-        </div>
-      </el-carousel-item>
-      <el-carousel-item>
-        <div class="carousel">
-          <img src="../style/images/banner-02.jpg">
-          <div class="carousel-text">
-            <h3>博客咖-国内博客聚合导航站</h3>
-            <p>bokeka.com</p>
+            <h3>{{banner.title}}</h3>
+            <p>{{banner.description}}</p>
           </div>
         </div>
       </el-carousel-item>
@@ -24,23 +15,31 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
-      defaultValue: ""
-    };
-  },
-  computed: {},
-  components: {},
-  methods: {
-    confirm() {}
+      bannerData:[
+        {
+          pic: "src/assets/images/banner-01.jpg",
+          title: "博客咖-国内博客聚合导航站",
+          description: "bokeka.com"
+        },
+        {
+          pic: "src/assets/images/banner-02.jpg",
+          title: "博客咖-国内博客聚合导航站",
+          description: "bokeka.com"
+        }
+      ]
+    }
   }
 };
 </script>
 
 <style scoped lang="scss">
 .banner {
-  font-size: .12rem;
+  margin-top: 4rem;
+  font-size: 1.2rem;
   .carousel {
     width: 100%;
     height: 100%;
@@ -57,12 +56,12 @@ export default {
       margin: 0 auto;
       position: relative;
       padding-top: 10%;      
-      font-size: .12rem;
+      font-size: 1.2rem;
       text-align: center;
       z-index: 1000;
       h3, p {
         color: #fff;
-        font-size: .32rem;
+        font-size: 3.2rem;
       }
     }
   }
