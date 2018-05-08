@@ -14,7 +14,9 @@
                 <span> • 发表时间：{{ postDate(item.timestamp) }}</span>
                 <span> • 阅读量：{{ item.num_view }}</span>
               </p>
-              <el-tag class="tag" v-for="(tag,i) in item.tags" :key="i">{{ tag }}</el-tag>
+              <span>
+                <el-tag type="warning" size="mini" class="tag" v-for="(tag,i) in item.tags" :key="i">{{ tag }}</el-tag>
+              </span>
           </div>
         </div>
         <div class="main-witch-number">
@@ -51,7 +53,7 @@ export default {
       align-items: center;
       justify-content: space-between;
       min-height: 60px;
-      padding: 0.8% 1.8%;
+      padding: 1.4% 1.8%;
       background: #fff;
       border-bottom: 1px solid #F0F0F0;
       .main-content {
@@ -61,7 +63,7 @@ export default {
         .main-portrait {
           width: 48px;
           height: 48px;
-          margin-right: 1%;
+          margin-right: 2.2%;
           img {
             width: 100%;
             height: 100%;
@@ -70,17 +72,25 @@ export default {
         }
         .main-text {
           h2 {
-            margin-bottom: 2px;
-            font-size: 16px;
+            margin-bottom: 1%;
+            font-size: 18px;
             font-weight: 600;
+            a:hover {
+              color: #333
+            }
           }
           p {
             font-size: 14px;
             color: #8f8d8b;
+            margin-bottom: 1%;
+            span {
+              margin: 0 4px;
+            }
             .underline {
               text-decoration: underline;
             }
             .tag{
+              height: 20px;
               margin-right: 3px;
             }
           }

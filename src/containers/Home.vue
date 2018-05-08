@@ -27,7 +27,7 @@
           <el-aside class="el-aside">
             <div>
               <h2>热门标签</h2>
-              <el-tag class="tag" v-for="(tag, index) in tags" :key="index" size="mini" closable>{{ tag.content }}</el-tag>
+              <el-tag type="danger" class="tag" v-for="(tag, index) in tags" :key="index" size="medium">{{ tag.content }}</el-tag>
             </div>
           </el-aside>
         </el-col>
@@ -179,16 +179,18 @@ export default {
     .el-aside {
       box-sizing: border-box;
       background: #fff;
-      padding-bottom: 8px;
+      padding: 0 0 8px 0;
       h2 {
-        font-size: 20px;
+        font-size: 16px;
         line-height: 40px;
-        text-align: center;
-        color: #666;
-        background: #f3fbff;
+        font-weight: 700;
+        text-align: left;
+        text-indent: 10px;
+        color: #333;
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
       }
       .tag{
-        margin-left: 6px;
+        margin-left: 8px;
       }
       ul {
         box-sizing: border-box;
