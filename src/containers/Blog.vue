@@ -1,7 +1,9 @@
 <template>
   <div>
-    <header :isLogin="true"></header>
     <div style="width: 50%;margin: 20px auto;">
+      <header></header>
+
+      <span class="pic-desc">为博客选一张精美的配图吧！</span>
       <el-upload
         class="avatar-uploader"
         action="//up.qiniup.com"
@@ -14,6 +16,8 @@
         <img v-if="imageUrl" :src="imageUrl" class="avatar">
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
       </el-upload>
+
+      <div style="margin: 20px 0;"></div>
       <el-input
         type="textarea"
         autosize
@@ -29,6 +33,7 @@
         <template slot="prepend">Http://</template>
       </el-input>
 
+      <div style="margin: 20px 0;"></div>
       <el-select v-model="categoryId" placeholder="请选择博客分类">
       <el-option
         v-for="category in blogCategories"
@@ -38,7 +43,6 @@
         >
       </el-option>
       </el-select>
-
 
       <div style="margin: 20px 0;"></div>
       <el-input
@@ -197,6 +201,11 @@
 </script>
 
 <style >
+  .pic-desc {
+    font-size: 13px;
+    color: #C1C3CB;
+    line-height: 20px;
+  }
   .avatar-uploader .el-upload {
     border: 1px dashed #d9d9d9;
     border-radius: 6px;

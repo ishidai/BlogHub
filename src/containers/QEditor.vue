@@ -1,23 +1,10 @@
 <template>
   <!-- bidirectional data binding（双向数据绑定） -->
-  <div>
-    <Header
-    :isPublish="true"
-    :isLogin="true"
-    @commitActicle="commitActicle"></Header>
-      <div>
-        <el-input v-model="inputTitle" placeholder="请输入标题"></el-input>
-        <el-select v-model="valueChannel" placeholder="请选择栏目分类">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-      </div>
+  <div class="content-container">
 
-      <div>
+        <header></header>
+        <el-input v-model="inputTitle" placeholder="请输入标题"></el-input>
+
         <quill-editor v-model="content"
                       class="quill-code"
                       ref="myQuillEditor"
@@ -27,7 +14,18 @@
                       @focus="onEditorFocus($event)"
                       @ready="onEditorReady($event)">
         </quill-editor>
+
+        <el-select class="select-cateogry-tag" v-model="valueChannel" placeholder="请选择栏目分类">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+
           <el-tag
+            class="select-cateogry-tag"
             :key="tag"
             v-for="tag in dynamicTags"
             closable
@@ -47,8 +45,6 @@
           </el-input>
           <el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
       </div>
-
-    </div>
 </template>
 
 <script>
@@ -197,12 +193,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .content-container {
+    margin: 0 100px;
+  }
   .hide-alert {
     display: none;
   }
   .quill-code {
     margin-top: 10px;
-    margin: 0 100px;
     height: 500px;
   }
+  .select-cateogry-tag {
+    margin-top: 70px;
+  }
+
+  .el-button--small, .el-button--small.is-round {
+    padding: 9px 15px;
+    height: 40px;
+}
 </style>

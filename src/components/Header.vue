@@ -6,7 +6,7 @@
         <div class="menu">
           <ul>
             <li><a class="active" href="/">首页</a></li>
-            <li><a href="">书单</a></li>
+            <li><a href="">分类</a></li>
             <li><a href="">标签</a></li>
           </ul>
         </div>
@@ -26,13 +26,19 @@
         </div>
         <el-dropdown trigger="click" v-else>
           <el-button class="el-dropdown-link" size="mini">
-            <img class="profile-pic" src="../assets/images/11.jpg" alt="头像">
+            <img class="profile-pic" src="../assets/images/11.jpg" alt="用户头像">
             {{ user.username }}
             <i class="el-icon-caret-bottom el-icon--right"></i>
           </el-button>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item class="clearfix">
               我的主页
+            </el-dropdown-item>
+            <el-dropdown-item class="clearfix">
+              <router-link to="blog">提交博客</router-link>
+            </el-dropdown-item>
+            <el-dropdown-item class="clearfix">
+              <router-link to="post">发表见解</router-link>
             </el-dropdown-item>
             <el-dropdown-item class="clearfix">
               消息
