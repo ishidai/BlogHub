@@ -5,8 +5,8 @@
         <a class="logo" href="/"><img src="../assets/logo.jpg" alt="博客咖"></a>
         <div class="menu">
           <ul>
-            <li><a class="active" href="/">首页</a></li>
-            <li><a href="">分类</a></li>
+            <li><a :class="path==='/'? 'active' : ''" href="/">首页</a></li>
+            <li><a :class="path==='/categories'? 'active' : ''" href="/#/categories">分类</a></li>
             <li><a href="">标签</a></li>
           </ul>
         </div>
@@ -66,6 +66,7 @@ export default {
   },
   data() {
     return {
+      path: this.$route.path,
       user: {},
       search: ''
     };
