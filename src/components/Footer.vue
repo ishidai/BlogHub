@@ -54,6 +54,7 @@ a {
 .footer {
     padding: 40px 0;
     background: #2651F6;
+    margin-top: 20px;
 }
 
 .line {

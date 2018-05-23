@@ -9,6 +9,7 @@ import Blog from '@/containers/Blog'
 import Category from '@/containers/Category'
 import SignIn from '@/containers/SignIn'
 import ListCategory from '@/containers/ListCategory'
+import Tags from '@/containers/Tags'
 import * as types from '../store/mutation-types'
 
 Vue.use(Router)
@@ -38,6 +39,11 @@ const routes = [
       path: '/categories',
       name: 'categories',
       component: Category
+    },
+    {
+      path: '/tags',
+      name: 'tags',
+      component: Tags
     },
     {
       path: '/blog',

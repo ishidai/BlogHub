@@ -7,7 +7,7 @@
           <ul>
             <li><a :class="path==='/'? 'active' : ''" href="/">首页</a></li>
             <li><a :class="path==='/categories'? 'active' : ''" href="/#/categories">分类</a></li>
-            <li><a href="">标签</a></li>
+            <li><a :class="path==='/tags'? 'active' : ''" href="/#/tags">标签</a></li>
           </ul>
         </div>
       </div>
