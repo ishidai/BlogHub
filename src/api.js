@@ -5,7 +5,7 @@ import router from './router'
 
 // axios 配置
 axios.defaults.timeout = 6000
-axios.defaults.baseURL = 'http://45.76.110.119:5000'
+axios.defaults.baseURL = process.env.API_BASEURL
 
 // http request 拦截器
 axios.interceptors.request.use(

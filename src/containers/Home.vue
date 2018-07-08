@@ -27,7 +27,7 @@
           <el-aside class="el-aside">
             <div>
               <h2>热门标签</h2>
-              <el-tag type="danger" class="tag" v-for="(tag, index) in tags" :key="index" size="medium">{{ tag.content }}</el-tag>
+              <el-tag type="primary" class="tag" v-for="(tag, index) in tags" :key="index" size="medium">{{ tag.content }}</el-tag>
             </div>
           </el-aside>
         </el-col>

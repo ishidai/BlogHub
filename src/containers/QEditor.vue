@@ -44,6 +44,7 @@
           >
           </el-input>
           <el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
+          <el-button class="button-new-tag" size="small" @click="commitActicle">保存</el-button>
       </div>
 </template>
 

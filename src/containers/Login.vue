@@ -12,7 +12,8 @@
         <el-input type="password" v-model="form.pwd" auto-complete="off"></el-input>
       </el-form-item>
       <el-button class="botton" type="primary" @click="login('form')">登录</el-button>
-      <a  class="botton1" href="http://45.76.110.119:5000/api/v1.0/login/github">
+      <!-- ${process.env.API_BASEURL}/api/v1.0/login/github -->
+      <a  class="botton1" href="">
         <el-button class="botton" type="success">GitHub登录</el-button>
       </a>
       <el-button class="botton" type="info" plain @click="resetFrom('form')">重置</el-button>

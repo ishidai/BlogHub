@@ -214,7 +214,7 @@ export default {
       }
     }
     .post-title-about {
-      margin-top: 30px;
+      margin-top: 50px;
       h2 {
         margin-bottom: 30px;
         font-weight: 700;

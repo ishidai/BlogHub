@@ -18,6 +18,7 @@ import '../node_modules/element-ui/lib/theme-chalk/index.css'
 import '../node_modules/element-ui/lib/theme-chalk/display.css'
 import '@/assets/scss/index.scss'
 import moment from 'moment'
+import '@/assets/scss/element-variables.scss'
 // 将axios挂载到prototype上，在组件中可以直接使用this.axios访问
 Vue.prototype.axios = axios
 Vue.config.productionTip = false

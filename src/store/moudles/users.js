@@ -5,7 +5,8 @@ const state = {
   token: '',
   isLogin: false,
   qiniuToken: '',
-  userId: '0'
+  userId: '0',
+  user: {}
 }
 
 // getters
@@ -21,6 +22,9 @@ const actions = {
   },
   saveUserId ({ commit }, userId) {
     commit(types.USER_ID, userId )
+  },
+  saveUserInfo ({ commit }, user) {
+    commit(types.USER, user)
   }
 }
 
@@ -37,7 +41,11 @@ const mutations = {
   },
   [types.USER_ID] (state, id) {
     state.userId = id
-  }
+  },
+  [types.USER] (state, user) {
+    state.user = user
+  },
+
 }
 
 export default {

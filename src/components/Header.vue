@@ -32,7 +32,7 @@
           </el-button>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item class="clearfix">
-              我的主页
+              <router-link to="mine">我的主页</router-link>
             </el-dropdown-item>
             <el-dropdown-item class="clearfix">
               <router-link to="blog">提交博客</router-link>
@@ -47,7 +47,7 @@
             <el-dropdown-item class="clearfix">
               设置
             </el-dropdown-item>
-            <el-dropdown-item @click="logout()" class="clearfix">
+            <el-dropdown-item @click.native="logout" class="clearfix">
               退出
             </el-dropdown-item>
           </el-dropdown-menu>
@@ -94,6 +94,7 @@ export default {
       this.$emit("commitActicle");
     },
     logout() {
+      console.log('saaasasa');
       this.axios.get(constans.logout).then(res => {
         window.localStorage.clear();
         window.location.reload();
@@ -108,8 +109,9 @@ export default {
             username: token
           }
         }).then(res => {
-          console.log('user-info:', res.data.result)
           this.user = res.data.result;
+          console.log('user-info:', this.user);
+          this.$store.dispatch("saveUserInfo", this.user);
         }).catch((err) => {
           console.log(err)
           window.localStorage.clear();

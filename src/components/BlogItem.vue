@@ -15,7 +15,7 @@
                 <span> • 阅读量：{{ item.num_view }}</span>
               </p>
               <span>
-                <el-tag type="warning" size="mini" class="tag" v-for="(tag,i) in item.tags" :key="i">{{ tag }}</el-tag>
+                <el-tag type="primary" size="mini" class="tag" v-for="(tag,i) in item.tags" :key="i">{{ tag }}</el-tag>
               </span>
           </div>
         </div>
@@ -89,7 +89,7 @@ export default {
             .underline {
               text-decoration: underline;
             }
-            .tag{
+            .tag {
               height: 20px;
               margin-right: 3px;
             }
