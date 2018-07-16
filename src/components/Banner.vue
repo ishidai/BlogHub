@@ -21,12 +21,12 @@ export default {
     return {
       bannerData:[
         {
-          pic: "src/assets/images/banner-01.jpg",
+          pic: require("../assets/images/banner-01.jpg"),
           title: "博客咖-国内博客聚合导航站",
           description: "bokeka.com"
         },
         {
-          pic: "src/assets/images/banner-02.jpg",
+          pic: require("../assets/images/banner-02.jpg"),
           title: "博客咖-国内博客聚合导航站",
           description: "bokeka.com"
         }
