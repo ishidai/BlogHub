@@ -8,6 +8,8 @@
             <li><a :class="path==='/'? 'active' : ''" href="/">首页</a></li>
             <li><a :class="path==='/categories'? 'active' : ''" href="/#/categories">分类</a></li>
             <li><a :class="path==='/tags'? 'active' : ''" href="/#/tags">标签</a></li>
+            <li><a :class="path==='/tags'? 'active' : ''" href="">移动客户端开发中...</a></li>
+            <li><a :class="path==='/tags'? 'active' : ''" href="https://github.com/ishidai/BlogHub/issues/new">我要提意见</a></li>
           </ul>
         </div>
       </div>

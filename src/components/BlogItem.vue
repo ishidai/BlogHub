@@ -8,9 +8,11 @@
           <div class="main-text">
               <h2><router-link :to="{ name: 'content', params: { id: item.id }}">{{ item.title }}</router-link></h2>
               <p>
-                <span class="underline">{{ item.username }}</span>
+                <!-- <span href="./My">{{ item.username }}</span> -->
+                1111
+                <span>{{ item.username }}</span>
                 <span> • 最后由 </span>
-                <span class="underline">{{ item.comment_user_last }} 回复</span>
+                <span>{{ item.comment_user_last }} 回复</span>
                 <span> • 发表时间：{{ postDate(item.timestamp) }}</span>
                 <span> • 阅读量：{{ item.num_view }}</span>
               </p>

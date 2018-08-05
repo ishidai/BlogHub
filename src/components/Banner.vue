@@ -5,8 +5,8 @@
         <div class="carousel">
           <img :src="banner.pic">
           <div class="carousel-text">
-            <h3>{{banner.title}}</h3>
-            <p>{{banner.description}}</p>
+            <h3>{{ banner.title }}</h3>
+            <p>{{ banner.description }}</p>
           </div>
         </div>
       </el-carousel-item>
@@ -22,12 +22,12 @@ export default {
       bannerData:[
         {
           pic: require("../assets/images/banner-01.jpg"),
-          title: "博客咖-国内博客聚合导航站",
+          title: "博客咖-国内博客聚合导航站,仅供娱乐测试，非正式",
           description: "bokeka.com"
         },
         {
           pic: require("../assets/images/banner-02.jpg"),
-          title: "博客咖-国内博客聚合导航站",
+          title: "博客咖-国内博客聚合导航站,仅供娱乐测试，非正式",
           description: "bokeka.com"
         }
       ]

@@ -9,7 +9,7 @@
       <el-tabs v-model="activeName" @tab-click="handleClick" class="header-tabs">
         <el-tab-pane v-for="(blog_category, index) in blog_categories" :key='index' :label="blog_category.name" :name="`${blog_category.id}`" >
           <span slot="label">
-            <i :class=" 'icon el-icon-third-' + blog_category.pic"></i>{{ blog_category.name }}
+            <i :class=" 'icon el-icon-third-' + blog_category.pic "></i>{{ blog_category.name }}
           </span>
           <classify :selectCategoryId="blog_category.id"></classify>
         </el-tab-pane>

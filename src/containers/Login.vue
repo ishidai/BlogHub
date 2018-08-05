@@ -13,7 +13,7 @@
       </el-form-item>
       <el-button class="botton" type="primary" @click="login('form')">登录</el-button>
       <!-- ${process.env.API_BASEURL}/api/v1.0/login/github -->
-      <a  class="botton1" href="">
+      <a class="botton1" href="http://204.44.80.243:5000/api/v1.0/login/github">
         <el-button class="botton" type="success">GitHub登录</el-button>
       </a>
       <el-button class="botton" type="info" plain @click="resetFrom('form')">重置</el-button>
