@@ -84,7 +84,7 @@ if (window.localStorage.getItem('token')) {
 }
 
 const router = new Router({
-  // mode: 'history',
+  mode: 'history',
   routes,
   // scroll to top
   scrollBehavior (to, from, savedPosition) {

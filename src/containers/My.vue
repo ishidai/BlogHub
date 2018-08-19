@@ -1,6 +1,6 @@
 <template>
-<div>
-    <Header></Header>
+<div class="user-info-detail">
+<Header></Header>
 <el-row :gutter="10" class="user-info">
   <el-col :xs="0" :sm="7" :md="8" :lg="6" :xl="1"><div class="grid-content bg-purple"></div></el-col>
     <el-col :xs="24" :sm="10" :md="8" :lg="12" :xl="22">
@@ -9,21 +9,30 @@
             <div class="user-desc">个人信息个人信息个人信息个人信息</div>
         </div>
         <div class="user-info-img">
-            <v-gravatar :email="user.email" class="avatar" />
+            <v-gravatar :email="user.email" class="avatar"/>
         </div>
     </el-col>
   <el-col :xs="0" :sm="7" :md="8" :lg="6" :xl="1"><div class="grid-content bg-purple-light"></div></el-col>
 </el-row>
 
-    <el-tabs v-model="activeName" @tab-click="handleClick" :stretch="isStretch"
-        :tab-position="tabPosition" >
+<el-row :gutter="10">
+  <el-col :xs="6" :sm="4" :md="3" :lg="6" :xl="6"><div class="grid-content hidden-xs-only"></div></el-col>
+  <el-col :xs="24" :sm="16" :md="18" :lg="12" :xl="12">
+      <div class="grid-content bg-purple-light">
+            <el-tabs v-model="activeName" @tab-click="handleClick" :stretch="isStretch" class="test-test"
+                :tab-position="tabPosition">
                 <el-tab-pane label="热门分享" name="first">热门分享</el-tab-pane>
                 <el-tab-pane label="最新分享" name="second">最新分享</el-tab-pane>
                 <el-tab-pane label="我的收藏" name="third">我的收藏</el-tab-pane>
                 <el-tab-pane label="赞过的文章" name="fourth">赞过的文章</el-tab-pane>
                 <el-tab-pane label="关注" name="fifth">关注</el-tab-pane>
                 <el-tab-pane label="粉丝" name="sixth">粉丝</el-tab-pane>
-    </el-tabs>
+            </el-tabs>
+      </div>
+  </el-col>
+  <el-col :xs="6" :sm="4" :md="3" :lg="6" :xl="6"><div class="grid-content hidden-xs-only"></div></el-col>
+</el-row>
+    
 </div>
 </template>
 <script>
@@ -63,7 +72,7 @@ export default {
 
 <style scoped > 
     .user-info {
-        margin-top: 100px;
+        margin-top: 60px;
     }
     .user-info-username {
         color: #000;
@@ -98,16 +107,21 @@ export default {
     .username {
         font-weight: 500;
         font-size: 3rem;
+        margin-top: 80px;
     }
     .user-info-img {
         width: 30%;
         /* background: green; */
         float: left;
+        margin-top: 50px;
     }
     .user-desc {
         color: #000;
         font-size: 1rem;
         line-height: 100px;
+    }
+    .user-info-detail {
+        background: #FFFFFF;
     }
 </style>
 
