@@ -33,7 +33,7 @@ Vue.use(ElementUI)
 // components can be called from the imported UIkit reference
 /* eslint-disable no-new */
 
-new Vue({
+const vm = new Vue({
   el: '#app',
   router,
   axios,
@@ -41,3 +41,5 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
+export default vm;

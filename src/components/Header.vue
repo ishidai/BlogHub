@@ -28,8 +28,9 @@
         </div>
         <el-dropdown trigger="click" v-else>
           <el-button class="el-dropdown-link" size="mini">
-            <img class="profile-pic" src="../assets/images/11.jpg" alt="用户头像">
-            {{ user.username }}
+            <img  v-if="imageUrl" class="profile-pic" :src="imageUrl" alt="头像">
+            <v-gravatar v-else :email="getCurrentUser.email" class="profile-pic"/>
+            {{ getCurrentUser.username }}
             <i class="el-icon-caret-bottom el-icon--right"></i>
           </el-button>
           <el-dropdown-menu slot="dropdown">
@@ -47,7 +48,7 @@
               <el-badge class="mark" :value="6" />
             </el-dropdown-item>
             <el-dropdown-item class="clearfix">
-              设置
+              <router-link to="user">设置</router-link>
             </el-dropdown-item>
             <el-dropdown-item @click.native="logout" class="clearfix">
               退出
@@ -62,6 +63,12 @@
 <script>
 import constans from "../constant/consts";
 import * as types from '../store/mutation-types';
+import utils from '../utils/utils.js'
+import Vue from 'vue';
+import Gravatar from 'vue-gravatar';
+
+Vue.component('v-gravatar', Gravatar);
+
 export default {
   props: {
     isPublish: Boolean
@@ -70,12 +77,16 @@ export default {
     return {
       path: this.$route.path,
       user: {},
-      search: ''
+      search: '',
+      imageUrl: '',
     };
   },
   computed: {
     isLoginOnline() {
       return this.$store.state.users.isLogin
+    },
+    getCurrentUser() {
+      return this.$store.state.users.user
     }
   },
   components: {},
@@ -96,28 +107,15 @@ export default {
       this.$emit("commitActicle");
     },
     logout() {
-      console.log('saaasasa');
-      this.axios.get(constans.logout).then(res => {
-        window.localStorage.clear();
-        window.location.reload();
-      });
+      window.localStorage.clear();
+      window.location.reload();
     }
   },
   created() {
-    const token = window.localStorage.getItem("token");
-    this.axios.get(constans.user, {
-          timeout: 6000,
-          auth: {
-            username: token
-          }
-        }).then(res => {
-          this.user = res.data.result;
-          console.log('user-info:', this.user);
-          this.$store.dispatch("saveUserInfo", this.user);
-        }).catch((err) => {
-          console.log(err)
-          window.localStorage.clear();
-        })
+    // 获取用户信息和头像
+    utils.getUserInfo().then(user => {
+      this.imageUrl = user.avatar_url
+    })
   },
   mounted() {
   }

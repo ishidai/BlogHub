@@ -48,5 +48,5 @@ response => {
     // console.log('XXXXXXXXXXXXX', JSON.stringify(error));//console : Error: Request failed with status code 402
     return Promise.reject()
   })
-
+  
 export default axios

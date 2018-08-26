@@ -54,7 +54,7 @@
         },
         methods: {
           clickCount(id) {
-            this.axios.get(`${consts.blogs}${id}`)
+            this.axios.get(`${consts.blog_views}${id}`)
           },
           collectBlog(id, index) {
             this.axios.get(`${consts.collect}/${id}`, {

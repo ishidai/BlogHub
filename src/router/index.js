@@ -11,6 +11,7 @@ import SignIn from '@/containers/SignIn'
 import ListCategory from '@/containers/ListCategory'
 import Tags from '@/containers/Tags'
 import My from '@/containers/My'
+import User from '../components/user/User'
 import * as types from '../store/mutation-types'
 
 Vue.use(Router)
@@ -69,6 +70,14 @@ const routes = [
         requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
       },
       component: My
+    },
+    {
+      path: '/user',
+      name: 'user',
+      meta: {
+        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+      },
+      component: User
     },
     {
       path: '/list/category/:category_id',

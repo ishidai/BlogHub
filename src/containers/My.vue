@@ -5,11 +5,12 @@
   <el-col :xs="0" :sm="7" :md="8" :lg="6" :xl="1"><div class="grid-content bg-purple"></div></el-col>
     <el-col :xs="24" :sm="10" :md="8" :lg="12" :xl="22">
         <div class="user-info-text">
-            <h1 class="username">{{ user.username }}</h1>
-            <div class="user-desc">个人信息个人信息个人信息个人信息</div>
+            <h1 class="username">{{ getUser.username }}</h1>
+            <div class="user-desc">{{ getUser.location }}</div>
         </div>
         <div class="user-info-img">
-            <v-gravatar :email="user.email" class="avatar"/>
+            <img v-if="getUser.avatar_url" :src="getUser.avatar_url" class="avatar">
+            <v-gravatar v-else :email="getUser.email" class="avatar"/>
         </div>
     </el-col>
   <el-col :xs="0" :sm="7" :md="8" :lg="6" :xl="1"><div class="grid-content bg-purple-light"></div></el-col>
@@ -51,10 +52,14 @@ export default {
         activeName: 'first',
         isStretch: true,
         tabPosition: 'top',
-        user: {}
+        email: '',
+        user_avatar: ''
       };
     },
     computed: {
+        getUser() {
+            return this.$store.state.users.user;
+        }
     },
     methods: {
       handleClick(tab, event) {
@@ -62,7 +67,6 @@ export default {
       },
     },
     created() {
-        this.user = this.$store.state.users.user
     },
     components: {
         Header
@@ -110,10 +114,13 @@ export default {
         margin-top: 80px;
     }
     .user-info-img {
-        width: 30%;
-        /* background: green; */
-        float: left;
         margin-top: 50px;
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 100%;
+        width: 100px;
+        height: 100px;
+        border: 0;
     }
     .user-desc {
         color: #000;

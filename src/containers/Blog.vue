@@ -1,9 +1,11 @@
 <template>
   <div>
-    <div style="width: 50%;margin: 20px auto;">
-      <header></header>
-
-      <span class="pic-desc">为博客选一张精美的配图吧！</span>
+    <Header></Header>
+ <el-row :gutter="10">
+  <el-col :xs="2" :sm="4" :md="3" :lg="6" :xl="6">.</el-col>
+  <el-col :xs="20" :sm="16" :md="18" :lg="12" :xl="12">
+      <div class="grid-content bg-purple-light post-blog">
+            <span class="pic-desc">为博客选一张精美的配图吧！</span>
       <el-upload
         class="avatar-uploader"
         action="//up.qiniup.com"
@@ -54,19 +56,26 @@
       </el-input>
       <div style="margin: 20px 0;"></div>
       <el-button type="primary" @click="onSubmit" >提交</el-button>
-    </div>
-    <Footer></Footer>
+      </div>
+  </el-col>
+  <el-col :xs="2" :sm="4" :md="3" :lg="6" :xl="6"><div class="grid-content hidden-xs-only"></div></el-col>
+</el-row>
   </div>
 </template>
 <script>
   import consts from "../constant/consts";
   import Header from "../components/Header.vue";
-  import Footer from "../components/Footer.vue";
   import * as types from '../store/mutation-types'
   import Vue from 'vue';
   import { Input } from 'element-ui';
   import { Upload  } from 'element-ui';
   import { Button  } from 'element-ui';
+  import { Row } from 'element-ui';
+  import { Col } from 'element-ui';
+  import Gravatar from 'vue-gravatar';
+
+  Vue.component(Row.name, Row);
+  Vue.component(Col.name, Col);
   Vue.component(Input.name, Input);
   Vue.component(Upload .name, Upload);
   Vue.component(Button .name, Button);
@@ -84,14 +93,13 @@
           token: ''
         },
         check: false,
-        bucketHost: 'http://p31mtjzxq.bkt.clouddn.com/',   // 上传图片的外链域名,七牛设置的
+        bucketHost: consts.base_upload_img_address,   // 上传图片的外链域名,七牛设置的
       }
     },
     computed: {
     },
     components: {
-      Header,
-      Footer
+      Header
     },
     created() {
       this.getBlogCategories()
@@ -113,7 +121,7 @@
         })
       },
       handleSuccess(res, file, fileList) {
-        this.imageUrl = `${this.bucketHost}${res.key}`
+        this.imageUrl = `${this.bucketHost}${res.key}?imageView2/2/h/300`
       },
       checkUrl() {
         const url = `http://${this.blogUrl}`
@@ -131,7 +139,12 @@
         const _this = this
         console.log('key:', key)
         return new Promise((resolve) => {
-          this.axios.get(`/api/v1.0/qiniu/token/${key}`)
+          this.axios.get(`/api/v1.0/upload/token/${key}`, {
+              timeout: 6000,
+              auth: {
+                username: this.$store.state.users.token
+              }
+            })
             .then((res) => {
               _this.form.key = key
               _this.form.token = res.data.token
@@ -228,5 +241,8 @@
     width: 178px;
     height: 178px;
     display: block;
+  }
+  .post-blog {
+    margin-top: 80px;
   }
 </style>
