@@ -13,7 +13,8 @@ export default {
   blog_views: '/api/common/v1.0/blogs/',
   // 展示主页blog数据
   show_blogs: '/api/common/v1.0/showblogs',
-  signin: '/api/v1.0/signin',
+  // 注册用户
+  signin: '/api/common/v1.0/signin',
   // 发表文章页 分类列表
   categories: '/api/common/v1.0/categories/',
   collect: '/api/v1.0/collect',
@@ -26,6 +27,9 @@ export default {
 
   // 更新用户资料
   update_user_info: '/api/v1.0/update/user',
+
+  // 获取用户分享过的文章
+  user_posts: '/api/common/v1.0/users',
 
   base_upload_img_address: 'https://images.bokeka.com/'
 }

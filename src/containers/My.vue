@@ -22,8 +22,12 @@
       <div class="grid-content bg-purple-light">
             <el-tabs v-model="activeName" @tab-click="handleClick" :stretch="isStretch" class="test-test"
                 :tab-position="tabPosition">
-                <el-tab-pane label="热门分享" name="first">热门分享</el-tab-pane>
-                <el-tab-pane label="最新分享" name="second">最新分享</el-tab-pane>
+                <el-tab-pane label="发表的文章" name="first">
+                    <blog-item type="post" :posts="posts"> </blog-item>
+                </el-tab-pane>
+                <el-tab-pane label="分享的博客" name="second">
+                    <blog-item type="blog" :blogs="blogs"> </blog-item>
+                </el-tab-pane>
                 <el-tab-pane label="我的收藏" name="third">我的收藏</el-tab-pane>
                 <el-tab-pane label="赞过的文章" name="fourth">赞过的文章</el-tab-pane>
                 <el-tab-pane label="关注" name="fifth">关注</el-tab-pane>
@@ -42,18 +46,27 @@ import { Row } from 'element-ui';
 import { Col } from 'element-ui';
 import Vue from 'vue';
 import Gravatar from 'vue-gravatar';
+import BlogItem from '../components/BlogItem.vue'
+import consts from "../constant/consts";
 
 Vue.component(Row.name, Row);
 Vue.component(Col.name, Col);
 Vue.component('v-gravatar', Gravatar);
+
 export default {
     data() {
       return {
         activeName: 'first',
         isStretch: true,
         tabPosition: 'top',
+        // 用户邮箱
         email: '',
-        user_avatar: ''
+        // 用户头像
+        user_avatar: '',
+        // 热门分享列表
+        posts: [],
+        blogs: [],
+        user: {}
       };
     },
     computed: {
@@ -65,11 +78,32 @@ export default {
       handleClick(tab, event) {
         console.log(tab, event);
       },
+      // 获取用户发表过的文章
+      getUserPosts(userId) {
+        this.axios.get(`${consts.user_posts}/${userId}/timeline`).then(response => {
+            this.posts = response.data.posts
+        }).catch(error => {
+            console.log(error);
+        })
+      },
+      // 获取用户分享过的博客
+      getUserBlogs(userId) {
+        this.axios.get(`${consts.user_posts}/${userId}/blogs/`).then(response => {
+            this.blogs = response.data.blogs
+            console.log('获取的blogs：', this.blogs)
+        }).catch(error => {
+            console.log(error);
+        })
+      }
     },
     created() {
+        const userId = localStorage.getItem('user_id')
+        this.getUserPosts(userId);
+        this.getUserBlogs(userId);
     },
     components: {
-        Header
+        Header,
+        BlogItem
     }
 }
 </script>

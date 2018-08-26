@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 展示post列表 start -->
     <div class="main-container" v-for="(item, index) in posts" :key="index">
         <div class="main-content">
           <div class="main-portrait">
@@ -8,8 +9,6 @@
           <div class="main-text">
               <h2><router-link :to="{ name: 'content', params: { id: item.id }}">{{ item.title }}</router-link></h2>
               <p>
-                <!-- <span href="./My">{{ item.username }}</span> -->
-                1111
                 <span>{{ item.username }}</span>
                 <span> • 最后由 </span>
                 <span>{{ item.comment_user_last }} 回复</span>
@@ -25,13 +24,15 @@
           <span>{{ item.comment_count }}</span>
         </div>
     </div>
+    <!-- 展示post列表 end -->
   </div>
 </template>
 
 <script>
 export default {
   props: {
-      posts: Array
+      posts: Array,
+      blogs: Array,
   },
   data() {
     return {
@@ -43,7 +44,8 @@ export default {
     }
   },
   created() {
-      console.log('posts===>', this.posts)
+  },
+  mounted() {
   }
 }
 </script>

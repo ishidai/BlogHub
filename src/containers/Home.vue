@@ -20,6 +20,7 @@
       <el-container class="el-container">
         <el-col :xs="24" :sm="20" :md="18" :lg="16">
           <el-main class="el-main">
+            <!-- 发表的文章列表 -->
             <BlogItem :posts="posts"> </BlogItem>
           </el-main>
         </el-col>

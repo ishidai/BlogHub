@@ -51,8 +51,8 @@ export default {
               }
             }).then(response => {
               _this.token = response.data.token;
-              window.localStorage.setItem("token", _this.token);
-              window.localStorage.setItem("user_id", response.data.user_id);
+              localStorage.setItem("token", _this.token);
+              localStorage.setItem("user_id", response.data.user_id);
               this.$store.dispatch("commitToken", _this.token);
               this.$store.dispatch("saveUserId", response.data.user_id);
               if (_this.token) {

@@ -41,7 +41,7 @@
         components: {
         },
         created() {
-          let user_id = window.localStorage.getItem('user_id')
+          let user_id = localStorage.getItem('user_id')
           // 如果取出的user_id没有值说明登录失败或者还没登录就直接取默认值
           if (!user_id) {
             user_id = 0;
