@@ -16,7 +16,6 @@ UI设计：@[Tiffany.Hsu](https://weibo.com/u/5632998333)
 
 项目参与：@[lmintlcx](https://github.com/lmintlcx) @[dokimaster](https://github.com/dokimaster) @[wpnl](https://github.com/wpnl)
 
-[![bitHound Overall Score](https://www.bithound.io/github/ishidai/BlogHub/badges/score.svg)](https://www.bithound.io/github/ishidai/BlogHub) [![bitHound Dependencies](https://www.bithound.io/github/ishidai/BlogHub/badges/dependencies.svg)](https://www.bithound.io/github/ishidai/BlogHub/master/dependencies/npm) [![bitHound Code](https://www.bithound.io/github/ishidai/BlogHub/badges/code.svg)](https://www.bithound.io/github/ishidai/BlogHub)
 
 **项目进度：** 
 
