@@ -23,10 +23,10 @@
             <el-tabs v-model="activeName" @tab-click="handleClick" :stretch="isStretch" class="test-test"
                 :tab-position="tabPosition">
                 <el-tab-pane label="发表的文章" name="first">
-                    <blog-item type="post" :posts="posts"> </blog-item>
+                    <blog-item type="post" :posts="posts"></blog-item>
                 </el-tab-pane>
                 <el-tab-pane label="分享的博客" name="second">
-                    <blog-item type="blog" :blogs="blogs"> </blog-item>
+                    <blog-item type="blog" :blogs="blogs"></blog-item>
                 </el-tab-pane>
                 <el-tab-pane label="我的收藏" name="third">我的收藏</el-tab-pane>
                 <el-tab-pane label="赞过的文章" name="fourth">赞过的文章</el-tab-pane>

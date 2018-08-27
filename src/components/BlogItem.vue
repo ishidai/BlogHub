@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <!-- 展示post列表 start -->
     <div v-if="type === 'post'" class="main-container" v-for="(item, index) in posts" :key="index">
         <div class="main-content">
@@ -27,7 +28,7 @@
     <!-- 展示post列表 end -->
 
     <!-- 展示分享的blog列表 start -->
-    <div v-else-if="type === 'blog'" class="main-container" v-for="(item, index) in blogs" :key="index">
+    <div v-if="type === 'blog'" class="main-container" v-for="(item, index) in blogs" :key="index">
         <div class="main-content">
           <div class="main-portrait">
               <img src="../assets/images/11.jpg">
@@ -58,9 +59,9 @@
 <script>
 export default {
   props: {
-      posts: Array,
-      blogs: Array,
-      type: String
+    posts: Array,
+    blogs: Array,
+    type: String
   },
   data() {
     return {
@@ -74,6 +75,7 @@ export default {
   created() {
   },
   mounted() {
+    console.log(this.type === 'blog')
   }
 }
 </script>
