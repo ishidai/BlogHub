@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 展示post列表 start -->
-    <div class="main-container" v-for="(item, index) in posts" :key="index">
+    <div v-if="type === 'post'" class="main-container" v-for="(item, index) in posts" :key="index">
         <div class="main-content">
           <div class="main-portrait">
               <img src="../assets/images/11.jpg">
@@ -25,6 +25,33 @@
         </div>
     </div>
     <!-- 展示post列表 end -->
+
+    <!-- 展示分享的blog列表 start -->
+    <div v-else-if="type === 'blog'" class="main-container" v-for="(item, index) in blogs" :key="index">
+        <div class="main-content">
+          <div class="main-portrait">
+              <img src="../assets/images/11.jpg">
+          </div>
+          <div class="main-text">
+              <h2><router-link :to="{ name: 'content', params: { id: item.id }}">{{ item.title }}</router-link></h2>
+              <p>
+                <span>{{ item.username }}</span>
+                <span> • 最后由 </span>
+                <span>{{ item.comment_user_last }} 回复</span>
+                <span> • 发表时间：{{ postDate(item.timestamp) }}</span>
+                <span> • 阅读量：{{ item.num_view }}</span>
+              </p>
+              <span>
+                <el-tag type="primary" size="mini" class="tag" v-for="(tag,i) in item.tags" :key="i">{{ tag }}</el-tag>
+              </span>
+          </div>
+        </div>
+        <div class="main-witch-number">
+          <span>{{ item.comment_count }}</span>
+        </div>
+    </div>
+    <!-- 展示分享的blog列表 end -->
+
   </div>
 </template>
 
@@ -33,6 +60,7 @@ export default {
   props: {
       posts: Array,
       blogs: Array,
+      type: String
   },
   data() {
     return {

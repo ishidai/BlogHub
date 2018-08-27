@@ -15,13 +15,12 @@
         </el-tab-pane>
       </el-tabs>
     </el-row>
-
     <el-row :gutter="16" class="container">
       <el-container class="el-container">
         <el-col :xs="24" :sm="20" :md="18" :lg="16">
           <el-main class="el-main">
             <!-- 发表的文章列表 -->
-            <BlogItem :posts="posts"> </BlogItem>
+            <blog-item :posts="posts" type="post"> </blog-item>
           </el-main>
         </el-col>
         <el-col :xs="0" :sm="4" :md="6">
