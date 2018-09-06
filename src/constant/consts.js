@@ -7,6 +7,8 @@ export default {
   user: '/api/v1.0/user/info',
   // 用户发表过的文章接口
   posts: '/api/v1.0/posts/',
+  // 文章内容接口
+  content: '/api/common/v1.0/posts/',
   // 用户提交博客来源的接口
   blogs: '/api/v1.0/blogs/',
   // 用户访问量

@@ -31,15 +31,19 @@
     <div v-if="type === 'blog'" class="main-container" v-for="(item, index) in blogs" :key="index">
         <div class="main-content">
           <div class="main-portrait">
-              <img src="../assets/images/11.jpg">
+              <img :src="item.img">
           </div>
           <div class="main-text">
-              <h2><router-link :to="{ name: 'content', params: { id: item.id }}">{{ item.title }}</router-link></h2>
+              <h2><router-link :to="item.url">{{ item.name }}</router-link></h2>
               <p>
-                <span>{{ item.username }}</span>
-                <span> • 最后由 </span>
+                <span>博客介绍: {{ item.description }}</span>
+                <!-- <span> • 最后由 </span>
                 <span>{{ item.comment_user_last }} 回复</span>
                 <span> • 发表时间：{{ postDate(item.timestamp) }}</span>
+                <span> • 阅读量：{{ item.num_view }}</span> -->
+              </p>
+              <p>
+                <span> • 收藏{{ item.collect_num }}次 </span>
                 <span> • 阅读量：{{ item.num_view }}</span>
               </p>
               <span>

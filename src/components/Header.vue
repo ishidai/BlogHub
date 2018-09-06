@@ -95,7 +95,7 @@ export default {
       this.$router.push("signin");
     },
     login() {
-      this.$router.push("login");
+      this.$router.push({ name: "login"});
     },
     blogCommit() {
       this.$router.push("blog");

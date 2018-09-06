@@ -1,6 +1,6 @@
 <template>
   <div style="background:#fff;">
-    <Header isLogin="isLogin"></Header>
+    <Header></Header>
     <div class="main">
       <div class="container">
         <!-- End 博客title and about -->
@@ -92,7 +92,7 @@ export default {
   created () {
     const _this = this;
     const arr = [
-      consts.posts,
+      consts.content,
       this.$route.params.id
     ];
     const postUrl = arr.join('');
@@ -104,7 +104,7 @@ export default {
       _this.time = response.data.timestamp
     })
 
-    this.axios.get(`/api/v1.0/posts/${this.$route.params.id}/comments/`)
+    this.axios.get(`/api/common/v1.0/posts/${this.$route.params.id}/comments/`)
       .then(response => {
           _this.comments = response.data.comments
           _this.totalCount = response.data.count
