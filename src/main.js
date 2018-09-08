@@ -4,8 +4,6 @@ import Vue from 'vue'
 import App from './App'
 import utils from './utils/utils'
 import router from './router/index'
-import UIkit from 'uikit'
-import Icons from '../node_modules/uikit/dist/js/uikit-icons'
 import Vuex from 'vuex'
 import axios from './api'
 import store from './store/index'
@@ -25,12 +23,10 @@ Vue.config.productionTip = false
 Vue.prototype.$utils = utils
 Vue.prototype.$moment = moment
 // loads the Icon plugin
-UIkit.use(Icons)
 Vue.use(VueQuillEditor, /* { default global options } */)
 Vue.use(Vuex)
 Vue.use(ElementUI)
 
-// components can be called from the imported UIkit reference
 /* eslint-disable no-new */
 
 const vm = new Vue({

@@ -5,18 +5,17 @@
       <div class="container">
         <!-- End 博客title and about -->
         <div class="post-title-about">
-          <h2>{{ title }}</h2>
+          <h1>{{ post.title }}</h1>
           <div class="rich-title">
-            <div class="rich-avatar">
-              <img src="../assets/images/11.jpg">
-            </div>
+            <p></p>
+            <Avatar :avatarUrl="post.avatar_url" :userName="post.username"></Avatar>
             <div class="rich-about">
               <div class="rich-text">
-                <p>{{ username }}</p>
-                <span>+关注</span>
+                <p>{{ post.username }}</p>
+                <el-button class="follow" :type='getFollowState' round @click="getFollowState == 'success' ? unfollow(post.username) : follow(post.username) ">{{ getFollowState == 'success' ? '已关注' : '关注'}}</el-button>
               </div>
               <div class="rich-amount">
-                {{ postDate(time) }}  字数 未知 阅读 未知 评论 未知 喜欢 未知
+                {{ postDate(post.time) }}
               </div>
             </div>
           </div>
@@ -24,7 +23,7 @@
         <!-- End 博客title and 关于 -->
 
         <!-- 富文本区域 -->
-        <div class="rich-container" v-html="content">
+        <div class="rich-container" v-html="post.body">
         </div>
         <!-- End 富文本区域 -->
 
@@ -39,12 +38,12 @@
               placeholder="请输入评论内容"
               v-model="textarea">
             </el-input>
-            <el-button class="comment-commit" type="success" @click="commitComment">提交评论</el-button>
+            <el-button class="comment-commit" type="primary" @click="commitComment">提交评论</el-button>
           </div>
           <ul>
             <li v-for="(item, index) in comments" :key="index">
               <div class="user-avatar">
-                <img src="../assets/images/11.jpg">
+                <Avatar :avatarUrl="item.avatar_url" :userName="item.username"></Avatar>
               </div>
               <div class="user-content">
                 <span>{{ item.username }} {{ postDate(item.timestamp) }}</span>
@@ -66,28 +65,39 @@ import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
 import consts from "../constant/consts";
 import { Input } from "element-ui";
+import Avatar from "../components/user/Avatar.vue"
+
 Vue.component(Input.name, Input);
 
 export default {
   data() {
     return {
-      title: '',
-      content: '',
-      username: '',
-      time: '',
+      // 文章相关
+      post: {},
+      // 评论框内容
       textarea: '',
+      // 评论列表
       comments: [],
-      totalCount: ''
+      // 评论条数
+      totalCount: '',
+      btnType: 'primary'
     };
   },
   computed: {
     isLogin() {
       return this.$store.state.users.isLogin
+    },
+    getCurrentUser() {
+      return this.$store.state.users.user
+    },
+    getFollowState() {
+      return this.btnType
     }
   },
   components: {
     Header,
-    Footer
+    Footer,
+    Avatar
   },
   created () {
     const _this = this;
@@ -97,11 +107,8 @@ export default {
     ];
     const postUrl = arr.join('');
     this.axios.get(postUrl).then(response => {
-      console.log('aaaa', response.data)
-      _this.title = response.data.title
-      _this.content = response.data.body
-      _this.username = response.data.username
-      _this.time = response.data.timestamp
+      _this.post = response.data
+      this.isFollow(_this.post.username);
     })
 
     this.axios.get(`/api/common/v1.0/posts/${this.$route.params.id}/comments/`)
@@ -109,6 +116,7 @@ export default {
           _this.comments = response.data.comments
           _this.totalCount = response.data.count
       })
+
   },
   methods: {
     postDate(date) {
@@ -124,6 +132,57 @@ export default {
       .catch(function(error) {
         console.log(error);
       });
+    },
+    follow(username) {
+      const _this = this;
+      this.axios.post(`${consts.follow}/${username}`, {
+              timeout: 6000,
+              auth: { 
+                username: this.$store.state.users.token 
+              }
+            }).then((res) => {
+              if(res.data.code == 200) {
+                  _this.btnType = "success";
+              } else if (res.data.code == 211) {
+                  _this.btnType = "success";
+              }
+            }).catch((err) => {
+              console.log(err)
+          })
+    },
+    isFollow(username) {
+      const _this = this;
+      this.axios.post(`${consts.is_follow}/${username}`, {
+              timeout: 6000,
+              auth: {
+                username: this.$store.state.users.token 
+              }
+            }).then((res) => {
+              if(res.data.code == 200) {
+                  _this.btnType = "success";
+              } else {
+                  _this.btnType = "primary";
+              }
+            }).catch((err) => {
+              console.log(err)
+          })
+    },
+    unfollow(username) {
+      const _this = this;
+      this.axios.post(`${consts.unfollow}/${username}`, {
+              timeout: 6000,
+              auth: { 
+                username: this.$store.state.users.token 
+              }
+            }).then((res) => {
+              if(res.data.code == 200) {
+                  _this.btnType = "primary";
+              } else if (res.data.code == 212) {
+                  _this.btnType = "primary";
+              }
+            }).catch((err) => {
+              console.log(err)
+          })
     }
   }
 };
@@ -132,12 +191,12 @@ export default {
 <style scoped lang="scss">
 @import "~scss/mixin";
 .main {
-  margin: 20px auto;
+  margin: 50px auto;
   background: #fff;
   .container {
     max-width: 800px;
     padding: 0 15px;
-    margin: 0 auto;
+    margin: 20px auto;
     .post-introduction {
       display: flex;
       align-items: center;
@@ -215,6 +274,7 @@ export default {
     }
     .post-title-about {
       margin-top: 50px;
+      padding-top: 50px;
       h2 {
         margin-bottom: 30px;
         font-weight: 700;
@@ -222,6 +282,7 @@ export default {
       .rich-title {
         display: flex;
         align-items: center;
+        margin-top: 40px;
         .rich-avatar {
           width: 40px;
           height: 40px;
@@ -251,10 +312,15 @@ export default {
               border-radius: 20px;
               background: #42c02e;
             }
+            .follow {
+              height: 30px;
+              line-height: 6px;
+            }
           }
           .rich-amount {
             font-size: 10px;
             color: #969696;
+            margin-top: 10px;
           }
         }
       }
@@ -301,6 +367,7 @@ export default {
             img {
               width: 100%;
               height: 100%;
+              border-radius: 50%;
             }
           }
           .user-content {

@@ -33,5 +33,11 @@ export default {
   // 获取用户分享过的文章
   user_posts: '/api/common/v1.0/users',
 
-  base_upload_img_address: 'https://images.bokeka.com/'
+  base_upload_img_address: 'https://images.bokeka.com/',
+  // 关注
+  follow: '/api/v1.0/follow',
+  // 取消关注
+  unfollow: '/api/v1.0/unfollow',
+  // 相互是否关注
+  is_follow: '/api/v1.0/following'
 }

@@ -9,8 +9,7 @@
             <div class="user-desc">{{ getUser.location }}</div>
         </div>
         <div class="user-info-img">
-            <img v-if="getUser.avatar_url" :src="getUser.avatar_url" class="avatar">
-            <v-gravatar v-else :email="getUser.email" class="avatar"/>
+            <Avatar :avatarUrl="getUser.avatar_url" :userName="getUser.username"></Avatar>
         </div>
     </el-col>
   <el-col :xs="0" :sm="7" :md="8" :lg="6" :xl="1"><div class="grid-content bg-purple-light"></div></el-col>
@@ -48,6 +47,7 @@ import Vue from 'vue';
 import Gravatar from 'vue-gravatar';
 import BlogItem from '../components/BlogItem.vue'
 import consts from "../constant/consts";
+import Avatar from "../components/user/Avatar.vue"
 
 Vue.component(Row.name, Row);
 Vue.component(Col.name, Col);
@@ -103,7 +103,8 @@ export default {
     },
     components: {
         Header,
-        BlogItem
+        BlogItem,
+        Avatar
     }
 }
 </script>
