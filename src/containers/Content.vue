@@ -1,7 +1,8 @@
 <template>
-  <div style="background:#fff;">
+  <div style="background:#fff; position: relative;">
     <Header></Header>
-    <div class="main">
+    <left-nav :dianzanActive="true"></left-nav>
+    <div class="main init-height">
       <div class="container">
         <!-- End 博客title and about -->
         <div class="post-title-about">
@@ -63,6 +64,7 @@
 import Vue from "vue";
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
+import LeftNav from "@/components/LeftNav";
 import consts from "../constant/consts";
 import { Input } from "element-ui";
 import Avatar from "../components/user/Avatar.vue"
@@ -97,7 +99,8 @@ export default {
   components: {
     Header,
     Footer,
-    Avatar
+    Avatar,
+    LeftNav
   },
   created () {
     const _this = this;

@@ -5,34 +5,36 @@
       <Banner></Banner>
     </div>
     <!-- boby start -->
-    <el-row :gutter="16" class="container">
-      <el-tabs v-model="activeName" @tab-click="handleClick" class="header-tabs">
-        <el-tab-pane v-for="(blog_category, index) in blog_categories" :key='index' :label="blog_category.name" :name="`${blog_category.id}`" >
-          <span slot="label">
-            <i :class=" 'icon el-icon-third-' + blog_category.pic "></i>{{ blog_category.name }}
-          </span>
-          <classify :selectCategoryId="blog_category.id"></classify>
-        </el-tab-pane>
-      </el-tabs>
-    </el-row>
-    <el-row :gutter="16" class="container">
-      <el-container class="el-container">
-        <el-col :xs="24" :sm="20" :md="18" :lg="16">
-          <el-main class="el-main">
-            <!-- 发表的文章列表 -->
-            <blog-item :posts="posts" type="post"> </blog-item>
-          </el-main>
-        </el-col>
-        <el-col :xs="0" :sm="4" :md="6">
-          <el-aside class="el-aside">
-            <div>
-              <h2>热门标签</h2>
-              <el-tag type="primary" class="tag" v-for="(tag, index) in tags" :key="index" size="medium">{{ tag.content }}</el-tag>
-            </div>
-          </el-aside>
-        </el-col>
-      </el-container>
-    </el-row>
+    <div class="init-height">
+      <el-row :gutter="16" class="container">
+        <el-tabs v-model="activeName" @tab-click="handleClick" class="header-tabs">
+          <el-tab-pane v-for="(blog_category, index) in blog_categories" :key='index' :label="blog_category.name" :name="`${blog_category.id}`" >
+            <span slot="label">
+              <i :class=" 'icon el-icon-third-' + blog_category.pic "></i>{{ blog_category.name }}
+            </span>
+            <classify :selectCategoryId="blog_category.id"></classify>
+          </el-tab-pane>
+        </el-tabs>
+      </el-row>
+      <el-row :gutter="16" class="container">
+        <el-container class="el-container">
+          <el-col :xs="24" :sm="20" :md="18" :lg="16">
+            <el-main class="el-main">
+              <!-- 发表的文章列表 -->
+              <blog-item :posts="posts" type="post"> </blog-item>
+            </el-main>
+          </el-col>
+          <el-col :xs="0" :sm="4" :md="6">
+            <el-aside class="el-aside">
+              <div>
+                <h2>热门标签</h2>
+                <el-tag type="primary" class="tag" v-for="(tag, index) in tags" :key="index" size="medium">{{ tag.content }}</el-tag>
+              </div>
+            </el-aside>
+          </el-col>
+        </el-container>
+      </el-row>
+    </div>
 
     <Footer></Footer>
   </div>

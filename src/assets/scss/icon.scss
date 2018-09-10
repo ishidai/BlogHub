@@ -15,6 +15,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-fenxiang:before { content: "\e62c"; }
+
+.icon-starActive:before { content: "\e608"; }
+
+.icon-star:before { content: "\e66c"; }
+
+.icon-dianzan:before { content: "\e60a"; }
+
+.icon-dianzanActive:before { content: "\e668"; }
+
 [class^="el-icon-third"], 
 [class*=" el-icon-third"] {
   font-family:"iconfont" !important;

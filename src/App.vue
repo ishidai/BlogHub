@@ -8,13 +8,16 @@
 export default {
   // 😒
   name: 'app',
+  components: {
+  },
   data() {
     return {};
   },
 }
 </script>
 
-<style>
-
-
+<style lang="scss">
+.init-height {
+  min-height: 400px;
+}
 </style>
