@@ -18,6 +18,6 @@ export default {
 
 <style lang="scss">
 .init-height {
-  min-height: 400px;
+  min-height: 600px;
 }
 </style>
