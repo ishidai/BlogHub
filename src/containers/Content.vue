@@ -1,9 +1,9 @@
 <template>
   <div style="background:#fff; position: relative;">
     <Header></Header>
-    <left-nav :dianzanActive="true"></left-nav>
     <div class="main init-height">
       <div class="container">
+        <left-nav :dianzanActive="true"></left-nav>
         <!-- End 博客title and about -->
         <div class="post-title-about">
           <h1>{{ post.title }}</h1>
@@ -197,6 +197,7 @@ export default {
   margin: 50px auto;
   background: #fff;
   .container {
+    position: relative;
     max-width: 800px;
     padding: 0 15px;
     margin: 20px auto;

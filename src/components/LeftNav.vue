@@ -48,9 +48,10 @@ export default {
 
 <style lang="scss" scoped>
 .left-nav{
-  position: fixed;
-  bottom: 40%;
-  left: 10px;
+  position: absolute;
+  width: 60px;
+  top: 20%;
+  left: -10%;
   z-index: 10000;
   .content {
     display: flex;
