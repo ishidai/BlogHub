@@ -22,8 +22,7 @@ export default {
   collect: '/api/v1.0/collect',
   // 展示主页blog分类栏目数据
   blog_categories: '/api/common/v1.0/categories/blog/',
-  // 获取tag列表
-  tags: '/api/common/v1.0/tags',
+
 
   categories_list: '/api/common/v1.0/categories/list',
 
@@ -39,5 +38,19 @@ export default {
   // 取消关注
   unfollow: '/api/v1.0/unfollow',
   // 相互是否关注
-  is_follow: '/api/v1.0/following'
+  is_follow: '/api/v1.0/following',
+  // 对于post文章：是否点过赞
+  is_vote: '/api/v1.0/post/voted/state',
+  // 点赞
+  vote: '/api/v1.0/post/vote',
+  // 对于post文章：是否点过赞
+  is_collect: '/api/v1.0/post/collect/state',
+  // 点赞
+  collect: '/api/v1.0/post/collect',
+  // 拉取标签分类列表
+  list_tags: '/api/common/v1.0/list/tags',
+    // 获取tag列表
+  all_tags: '/api/common/v1.0/all/tags',
+  // 查找标签
+  search_tag: '/api/common/v1.0/search/tag/'
 }

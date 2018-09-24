@@ -9,6 +9,7 @@ import Blog from '@/containers/Blog'
 import Category from '@/containers/Category'
 import SignIn from '@/containers/SignIn'
 import ListCategory from '@/containers/ListCategory'
+import ListTagPosts from '@/containers/ListTagPosts'
 import Tags from '@/containers/Tags'
 import My from '@/containers/My'
 import User from '../components/user/User'
@@ -75,7 +76,7 @@ const routes = [
       path: '/user',
       name: 'user',
       meta: {
-        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+        requireAuth: true,
       },
       component: User
     },
@@ -83,6 +84,11 @@ const routes = [
       path: '/list/category/:category_id',
       name: 'list_category',
       component: ListCategory
+    },
+    {
+      path: '/search/tag/:tag_name', // 标签搜索列表
+      name: 'tag_name',
+      component: ListTagPosts
     }
 ]
 

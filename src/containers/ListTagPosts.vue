@@ -44,9 +44,8 @@ export default {
         BlogItem
     },
     created() {
-        this.axios.get(`${consts.categories}${this.$route.params.category_id}`).then(res => {
-            console.log('res.list:', res.data.posts)
-            this.posts = res.data.posts
+        this.axios.get(`${consts.search_tag}${this.$route.params.tag_name}`).then(res => {
+            this.posts = res.data.result
         }).catch(err => {
             console.log(err)
         })

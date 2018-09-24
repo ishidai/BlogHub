@@ -3,7 +3,8 @@
     <Header></Header>
     <div class="main init-height">
       <div class="container">
-        <left-nav :dianzanActive="true"></left-nav>
+        <left-nav :dianzanActive="getVotedState" :starActive="getCollectedState" 
+        @on-favorite="collect" @on-vote="vote" :voteCount="voteCount"></left-nav>
         <!-- End 博客title and about -->
         <div class="post-title-about">
           <h1>{{ post.title }}</h1>
@@ -82,7 +83,10 @@ export default {
       comments: [],
       // 评论条数
       totalCount: '',
-      btnType: 'primary'
+      btnType: 'primary',
+      votedState: false,
+      selectedState: false,
+      voteCount: ''
     };
   },
   computed: {
@@ -94,6 +98,12 @@ export default {
     },
     getFollowState() {
       return this.btnType
+    },
+    getVotedState() {
+      return this.votedState
+    },
+    getCollectedState() {
+      return this.selectedState
     }
   },
   components: {
@@ -120,6 +130,8 @@ export default {
           _this.totalCount = response.data.count
       })
 
+      this.isVoted();
+      this.isCollected();
   },
   methods: {
     postDate(date) {
@@ -182,6 +194,84 @@ export default {
                   _this.btnType = "primary";
               } else if (res.data.code == 212) {
                   _this.btnType = "primary";
+              }
+            }).catch((err) => {
+              console.log(err)
+          })
+    },
+    /**
+     * 是否点赞
+     */
+    isVoted() {
+      const postId = this.$route.params.id;
+      this.axios.post(`${consts.is_vote}/${postId}`, {
+              timeout: 6000,
+              auth: {
+                username: this.$store.state.users.token 
+              }
+            }).then((res) => {
+              if(res.data.code == 200) {
+                  this.votedState = res.data.result.is_vote;
+                  this.voteCount = res.data.result.count;
+              }
+            }).catch((err) => {
+              console.log(err)
+          })
+    },
+    /**
+     * 点赞
+     */
+    vote() {
+      const postId = this.$route.params.id;
+      this.axios.post(`${consts.vote}/${postId}`, {
+              timeout: 6000,
+              auth: {
+                username: this.$store.state.users.token 
+              }
+            }).then((res) => {
+              console.log(res.data)
+              if(res.data.code == 200) {
+                  this.votedState = res.data.result.is_vote;
+                  this.voteCount = res.data.result.count;
+              }
+            }).catch((err) => {
+              console.log(err)
+          })
+    },
+    /**
+     * 是否收藏
+     */
+    isCollected() {
+      const postId = this.$route.params.id;
+      this.axios.post(`${consts.is_collect}/${postId}`, {
+              timeout: 6000,
+              auth: {
+                username: this.$store.state.users.token 
+              }
+            }).then((res) => {
+              if(res.data.code == 200) {
+                  this.selectedState = res.data.result.is_collect;
+                  console.log('res.data.result.is_collect:', res.data.result.is_collect)
+              }
+            }).catch((err) => {
+              console.log(err)
+          })
+    },
+    /**
+     * 点赞
+     */
+    collect() {
+      const postId = this.$route.params.id;
+      this.axios.post(`${consts.collect}/${postId}`, {
+              timeout: 6000,
+              auth: {
+                username: this.$store.state.users.token 
+              }
+            }).then((res) => {
+              console.log(res.data)
+              if(res.data.code == 200) {
+                  this.selectedState = res.data.result.is_collect;
+                  console.log('res.data.result.is_collect:', res.data.result.is_collect)
               }
             }).catch((err) => {
               console.log(err)

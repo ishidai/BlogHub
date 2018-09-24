@@ -3,6 +3,7 @@
     <div class="content">
       <div class="item" @click="dianzan">
         <i class="iconfont" :class="dianzanActive === true ? 'icon-dianzanActive' : 'icon-dianzan'"></i>
+        <span>({{ voteCount }})</span>
       </div>
       <div class="item" @click="star">
         <i class="iconfont" :class="starActive === true ? 'icon-starActive' : 'icon-star'"></i>
@@ -21,6 +22,10 @@ export default {
       default: false,
       type: Boolean
     },
+    voteCount:{
+      default: "0",
+      type: String
+    },
     starActive: {
       default: false,
       type: Boolean
@@ -32,12 +37,10 @@ export default {
   },
   methods: {
     dianzan () {
-      this.$emit('dianzan')
-      this.dianzanActive = !this.dianzanActive
+      this.$emit('on-vote')
     },
     star () {
-      this.$emit('favorite')
-      this.starActive = !this.starActive
+      this.$emit('on-favorite')
     },
     share () {
       this.$emit('share')
@@ -48,10 +51,10 @@ export default {
 
 <style lang="scss" scoped>
 .left-nav{
-  position: absolute;
+  position: fixed;
   width: 60px;
-  top: 20%;
-  left: -10%;
+  top: 16%;
+  left: 22%;
   z-index: 10000;
   .content {
     display: flex;

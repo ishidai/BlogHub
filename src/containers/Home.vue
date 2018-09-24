@@ -28,7 +28,12 @@
             <el-aside class="el-aside">
               <div>
                 <h2>热门标签</h2>
-                <el-tag type="primary" class="tag" v-for="(tag, index) in tags" :key="index" size="medium">{{ tag.content }}</el-tag>
+                <router-link class="tag"  v-for="(tag, index) in tags" :key="index" 
+                    :to="{ name: 'tag_name', params: { tag_name: tag.content }}">
+                    <el-tag class="tag" size="medium">{{ tag.content }}</el-tag>
+			          </router-link>
+
+                <!-- <el-tag type="primary" class="tag" v-for="(tag, index) in tags" :key="index" size="medium">{{ tag.content }}</el-tag> -->
               </div>
             </el-aside>
           </el-col>
@@ -81,7 +86,7 @@ export default {
   },
   methods: {
     getTags() {
-      this.axios.get(consts.tags).then((res) => {
+      this.axios.get(consts.all_tags).then((res) => {
         console.log('tags=>', res.data)
         this.tags = res.data.tags
       }).catch(err => {
@@ -193,6 +198,7 @@ export default {
       }
       .tag{
         margin-left: 8px;
+        margin-top: 10px;
       }
       ul {
         box-sizing: border-box;

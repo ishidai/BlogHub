@@ -1,7 +1,7 @@
 <template>
 <div>
   <Header></Header>
-  <CategoryItem class="init-height"></CategoryItem>
+  <category-item class="init-height"></category-item>
   <Footer></Footer>
 </div>
 </template>
